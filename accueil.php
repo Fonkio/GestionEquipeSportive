@@ -8,6 +8,7 @@
 <?php
 	require('lib.php');
 	$linkpdo=connecterPDO();
+	echo "Yolo";
 ?>
 
 

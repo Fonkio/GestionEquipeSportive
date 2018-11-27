@@ -1,9 +1,9 @@
 <?php
 	
 	function connecterPDO(){
-	require('config.php');
+	require('../config.php');
 		try {
-			$linkpdo = new PDO("mysql:host=$host;dbname=$login",$login,$mdp);
+			$linkpdo = new PDO("mysql:host=$host;dbname=$login",$server,$mdp);
 		}
 		catch (Exception $e) {
 			die('Erreur : ' . $e->getMessage());

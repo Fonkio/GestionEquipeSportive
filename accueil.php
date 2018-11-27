@@ -6,6 +6,7 @@
 </head>
 <body>
 <?php 
+echo test
 	require('config.php');
 	///Connexion au serveur MySQL
 	require('connect.php');

@@ -1,7 +1,6 @@
 <?php
-$server = "fonkio.000webhostapp.com";
+	$login='slm2698a';
+	$mdp='D5GB5sj2';
+	$host='localhost';
 
-$db = "id6321481_fonkio81";
-$login = "id6321481_fonkio81";
-$mdp = "LapinDu81";
 ?>

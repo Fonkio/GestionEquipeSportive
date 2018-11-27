@@ -1,19 +1,16 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-<head>
-	<title>Ajouter Contact</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body>
-<?php 
-echo test
-	require('config.php');
-	///Connexion au serveur MySQL
-	require('connect.php');
-	///Sélection de tout le contenu de la table carnet_adresse
-	echo "coucou"
- ?>
+    <head>
+        <meta charset="utf-8" />
+        <title>Modifier un contact</title>
+    </head>
+	<body>
+<?php
+	require('lib.php');
+	$linkpdo=connecterPDO();
+?>
 
-</body>
+
+
+	</body>
 </html>
-

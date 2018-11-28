@@ -16,5 +16,9 @@
 			$linkpdo=connecterPDO();
 			require('header.php');
 		?>
+		<form>	
+		<button type="button" class="btn btn-danger">Supprimer</button>
+		<button type="button" class="btn btn-primary">Modifier</button>
+		</form>
 	</body>
 </html>

@@ -6,13 +6,7 @@
     <a class="navbar-brand" href="#">Accueil</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Ajouter<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Modification</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Suppression</a>
+        <a class="nav-link" href="ajouterJoueur.php">Ajouter un joueur<span class="sr-only">(current)</span></a>
       </li>
     </ul>
   </div>

@@ -16,16 +16,9 @@
 			require('lib.php');//Connexion à la BDD
 			$linkpdo=connecterPDO();
 
-			$reqAjout = $linkpdo->prepare('INSERT INTO joueur(NumLicence, Nom, Prenom, DateDeNaissance, Taille, Poids, PostePref,Statut) VALUES(:NumLicence, :Nom, :Prenom, :DateDeNaissance, :Taille, :Poids, :PostePref, :Statut)');
+
 	
-			$reqAjout->execute(array('NumLicence'=>$numLicence,
-					'Nom'=>$nom,
-					'Prenom'=>$prenom,
-					'DateDeNaissance'=>$ddn,
-					'Taille'=>$taill,
-					'Poids'=>$poids,
-					'PostePref'=>$postePref,
-					'Statut'=>$statut));
+
 		?>
 	</body>
 </html>

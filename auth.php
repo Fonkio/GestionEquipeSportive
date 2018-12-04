@@ -13,24 +13,36 @@
 	<body>
 
 		<?php
-			require('lib.php');
-			$linkpdo=connecterPDO();
-			require('header.php');
-			session_start();
+			if(!empty($_SESSION['login']) && !empty($_SESSION['mdp'])) {
+				header('Location: accueil.php');
+			}
+			else{
 
-			if(empty($_SESSION['login']) || empty($_SESSION['mdp'])){
-				if(empty($_POST['login']) && empty($_POST['mdp'])){
-		?>
-					<form action="session.php" method="post">
-						Login <input type="text" name="login"/>
-						Mot de passe <input type="password" name="mdp"/>
-						<input name="op" type="submit" value="Valider"/>
-					</form>
-		<?php
-				}
-				else {
-					$_SESSION['login'] = $_POST['login'];;
-					$_SESSION['mdp'] = $_POST['mdp'];
+				//Variables pour vérifier le login et le mdp. A mettre dans une BDD après
+				$login_valide='lapin';
+				$psswd_valide='canard';
+
+				require('lib.php');//Appel connexion BBD
+				$linkpdo=connecterPDO();
+				require('header.php');//Header CSS
+
+				//Si les variables sessions sont vides
+				if(empty($_SESSION['login']) || empty($_SESSION['mdp'])){
+					if(empty($_POST['login']) && empty($_POST['mdp'])){//Si les variables formulaires sont vides
+
+			?>			
+						<form action="" method="post">
+							Login <input type="text" name="login"/>
+							Mot de passe <input type="password" name="mdp"/>
+							<input name="op" type="submit" value="Valider"/>
+						</form>
+			<?php
+					}
+					//Si le login est faux
+					elseif($_POST['login']!=$login_valide || $_POST['mdp']!=$psswd_valide) {
+						header('Location: authErr.php');
+					}
+
 				}
 			}
 		?>

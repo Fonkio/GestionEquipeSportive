@@ -12,6 +12,12 @@
     </head>
 	<body>
 		<?php
+			//Vérification s'il est log
+			session_start();
+			if(empty($_SESSION['login'])){
+				header('Location: auth.php');//Redirection s'il ne l'est pas
+			}
+
 			$numLicence=0;
 			$nom="m";
 			$prenom="m";

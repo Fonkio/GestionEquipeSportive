@@ -38,10 +38,9 @@
                     } elseif ($_POST['mdp'] != $psswd_valide) {
                         header('Location: authErrMdp.php');
                     } else {
-                        session_start();
                         $_SESSION['login'] = $_POST['login'];
                         $_SESSION['mdp'] = $_POST['mdp'];
-                        header('Location: accueil.php');
+                        //header('Location: accueil.php');
                     }
                 }
 		?>

@@ -12,19 +12,29 @@
     </head>
 	<body>
 		<?php
-			//Vérification s'il est log
-			session_start();
-			if(empty($_SESSION['login'])){
-				header('Location: auth.php');//Redirection s'il ne l'est pas
-			}
+			require('header.php');
 
-			$numLicence=0;
-			$nom="m";
-			$prenom="m";
-			$ddn=0;//Continuer avec les autres variables
-			//Vérification si les variables sont nulles ou non
-			if(isset($_POST['numLicence']) && isset($_POST['Nom']) && isset($_POST['Prenom']) && isset($_POST['Ddn']))
-			{
+			// //Vérification s'il est log
+			// session_start();
+			// if(empty($_SESSION['login'])){
+			// 	header('Location: auth.php');//Redirection s'il ne l'est pas
+			// }
+			
+			//Vérification si les variables obligatoire sont nulles ou non
+			if(isset($_POST['Ajouter'])) {
+				require('lib.php');
+				$linkpdo=connecterPDO();
+				
+				//Préparation requête ajout
+				$reqAjout = $linkpdo->prepare("SELECT Nom FROM joueur WHERE NumLicence = :nl");
+
+				$tab_param = array('nl'=>$numLicence)
+				$reqAjout->execute($tab_param);
+
+				//!!!!! ICI !!!!!!!
+				//JE DOIT VERIF SI LA REQUETE RENVOIE DES VALEURS
+
+				if 
 				$numLicence=$_POST['NumLicence'];
 				$nom=$_POST['Nom'];
 				$prenom=$_POST['Prenom'];
@@ -33,30 +43,34 @@
 				$poids=$_POST['Poids'];
 				$postePref=$_POST['PostePref'];
 				$statut=$_POST['Statut'];
-			}
-			
-			//print pour vérifier
-			print_r($_POST);			
 
-			require('lib.php');
-			$linkpdo=connecterPDO();
-			require('header.php');
+				$linkpdo=connecterPDO();
 				
-			//Préparation requête ajout
-			$reqAjout = $linkpdo->prepare('INSERT INTO joueur(NumLicence, Nom, Prenom, DateDeNaissance, Taille, Poids, PostePref,Statut) VALUES(:NumLicence, :Nom, :Prenom, :DateDeNaissance, :Taille, :Poids, :PostePref, :Statut)');
+				//Préparation requête ajout
+				$reqAjout = $linkpdo->prepare("INSERT INTO joueur (NumLicence, Nom, Prenom, DateDeNaissance, Taille, Poids, PostePref, Statut) 
+											   VALUES (:NumLicence, :Nom, :Prenom, :DateDeNaissance, :Taille, :Poids, :PostePref, :Statut)");
 
-			//Exécution requête ajout
-			$reqAjout->execute(array('NumLicence'=>$numLicence,
-					'Nom'=>$nom,
-					'Prenom'=>$prenom,
-					'DateDeNaissance'=>$ddn,
-					'Taille'=>$taille,
-					'Poids'=>$poids,
-					'PostePref'=>$postePref,
-					'Statut'=>$statut));
+				//Exécution requête ajout
+				$tab_param = array('NumLicence'=>$numLicence,
+				'Nom'=>$nom,
+				'Prenom'=>$prenom,
+				'DateDeNaissance'=>$ddn,
+				'Taille'=>$taille,
+				'Poids'=>$poids,
+				'PostePref'=>$postePref,
+				'Statut'=>$statut);
+				$reqAjout->execute($tab_param);
+
+				echo("Le joueur $nom $prenom a bien été ajouté<br/>");
+				?>
+				<br/>
+				<a href="ajouterJoueur.php"> <button>< Retour</button></a>
+				<?php
+			} else {					
 		?>
+			
 
-		<form action ="" method="post">
+		<form action ="ajouterJoueur.php" method="post">
 			Numéro de licence : <input type="number" name="NumLicence"><br>
 			Nom : <input type="text" name="Nom"><br>
 			Prénom : <input type="text" name="Prenom"><br>
@@ -79,5 +93,8 @@
 			<input type="submit" name="Ajouter">
 
 		</form>
+		<?php
+		}
+		?>
 	</body>
 </html>

@@ -11,6 +11,10 @@
         <title>Mauvais mot de passe</title>
     </head>
 	<body>
+		<?php
+			require('lib.php');
+			estLogin();
+		?>
 		<h1> Vous avez rentré un mauvais mot de passe</h1><br />
 		<a href="auth.php"> Retour sur la page d'authentification</a>
 	</body>

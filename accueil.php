@@ -15,6 +15,7 @@
 			require('lib.php');
 			$linkpdo=connecterPDO();
 			require('header.php');
+			estLogin();
 		?>
 		<form>	
 		<button type="button" class="btn btn-danger">Supprimer</button>

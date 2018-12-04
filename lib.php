@@ -1,5 +1,5 @@
 <?php
-	
+	session_start();
 	function connecterPDO(){
 	require('../config.php');
 		try {
@@ -9,5 +9,11 @@
 			die('Erreur : ' . $e->getMessage());
 		}
 		return $linkpdo;
+	}
+
+	function estLogin(){
+		if(empty($_SESSION['login'])){
+			header('Location: auth.php');
+		}
 	}
 ?>

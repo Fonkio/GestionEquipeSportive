@@ -35,6 +35,7 @@
 		<tbody>
 		<?php
 			require('lib.php');
+			estLogin();
 			$linkpdo=connecterPDO();
 
 			//Préparation de la requête

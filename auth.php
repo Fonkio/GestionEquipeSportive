@@ -31,6 +31,7 @@
                             Mot de passe <input type="password" name="mdp"/>
                             <input name="op" type="submit" value="Valider"/>
                         </form>
+
                         <?php
                     } //Si le login est faux
                     elseif ($_POST['login'] != $login_valide) {
@@ -40,7 +41,7 @@
                     } else {
                         $_SESSION['login'] = $_POST['login'];
                         $_SESSION['mdp'] = $_POST['mdp'];
-                        //header('Location: accueil.php');
+                        header('Location: index.php');
                     }
                 }
 		?>

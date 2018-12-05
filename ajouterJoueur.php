@@ -50,7 +50,6 @@
 				formul();
 			}
 			else{
-				//Vérification si les variables obligatoire sont nulles ou non
 				if(isset($_POST['Ajouter'])) {
 					
 					//Connexion à la BDD
@@ -64,7 +63,6 @@
 					$tab_param = array('nl'=>$numLicence);
 					$reqList->execute($tab_param);
 					$nb = $reqList->rowCount();
-					print("$nb");
 
 					if ($nb == 0) {
 						$numLicence=$_POST['NumLicence'];
@@ -92,6 +90,8 @@
 						'PostePref'=>$postePref,
 						'Statut'=>$statut);
 						$reqAjout->execute($tab_param);
+						
+						 print_r($reqAjout->errorInfo());
 
 						echo("Le joueur $nom $prenom a bien été ajouté<br/>");
 						?>

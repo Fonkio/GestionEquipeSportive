@@ -11,9 +11,11 @@
         <title>Ajouter un joueur</title>
     </head>
 	<body>
+
 		<?php
 			function formul() {
 				//BLOC Formulaire?>
+				<br/><h2>Ajouter un joueur :</h2><br/>
 				<form action="ajouterJoueur.php" method="POST" class="needs-validation" novalidate>
 
 				  <div class="form-row">

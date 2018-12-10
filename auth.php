@@ -16,10 +16,9 @@
 				//Variables pour vérifier le login et le mdp. A mettre dans une BDD après
 				$login_valide='lapin';
 				$psswd_valide='canard';
-
+                require('header.php');//Header CSS
 				require('lib.php');//Appel connexion BBD
 				$linkpdo=connecterPDO();
-				require('header.php');//Header CSS
 
 				//Si les variables sessions sont vides
 				if(empty($_SESSION['login']) || empty($_SESSION['mdp'])) {

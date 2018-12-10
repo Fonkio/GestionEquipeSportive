@@ -32,12 +32,12 @@
 				<td>Evaluation</td>-->
 			</tr>
 		</thread>
-		<tbody>
 		<?php
 			require('lib.php');
 			estLogin();
-			$linkpdo=connecterPDO();
-
+			$linkpdo=connecterPDO();?>
+<form method=POST action=ta_page.php>
+    <?php
 			//Préparation de la requête
 			$res = $linkpdo->prepare('SELECT NumLicence, Nom, Prenom, Taille, Poids, PostePref FROM joueur');
 			$res->execute(array());
@@ -49,10 +49,10 @@
 				<td><?php echo"$data[3]"?></td>
 				<td><?php echo"$data[4]"?></td>
 				<td><?php echo"$data[5]"?></td>
-				<td><a href="ajouterJoueur.php">Modifier</a></td>
-				<td><a href="supprimerJoueur.php">Supprimer</a></td>
+				<td><a href="modifierJoueur.php">Modifier</a></td>
+				<td><a href=<?php echo "plusInfo.php?NumLicence=$data[0]";?>>Plus d'info</a></td>
 			</tr>
-			
+        </form>
 			<?php }
 			
 			//On ferme le curseur

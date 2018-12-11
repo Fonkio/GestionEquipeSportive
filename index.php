@@ -34,7 +34,6 @@
 		</thread>
 		<?php
 			require('lib.php');
-			estLogin();
 			$linkpdo=connecterPDO();?>
 <form method=POST action=ta_page.php>
     <?php

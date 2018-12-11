@@ -14,7 +14,6 @@
     <?php
         require('lib.php');
         require('header.php');
-        estLogin();
         $linkpdo=connecterPDO();
 
     ?>

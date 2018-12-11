@@ -14,7 +14,6 @@
     <?php
         require('lib.php');
         require('header.php');
-        estLogin();
         $linkpdo=connecterPDO();
 	//Variables pour remplir le formulaire :
         $id=$_GET['NumLicence'];
@@ -27,7 +26,11 @@
 		$_POST['Ddn']=$data['DateDeNaissance'];
 		$_POST['Taille']=$data['Taille'];
 		$_POST['Poids']=$data['Poids'];
+		$PostePref=$data['PostePref'];
+		$Statut=$data['Statut'];
 	}
+	echo $ez;
+	echo $ea;
 
 	formulaire("modifierJoueur.php");
 

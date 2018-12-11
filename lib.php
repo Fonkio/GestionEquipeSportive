@@ -1,7 +1,15 @@
 <?php
 	session_start();
+
+	if(!(strrchr($_SERVER['SCRIPT_NAME'],'/')=="/auth.php" || strrchr($_SERVER['SCRIPT_NAME'],'/')=="/authErrLogin.php" || strrchr($_SERVER['SCRIPT_NAME'],'/')=="/authErrMdp.php"))
+	{
+		if(empty($_SESSION['login'])){
+				header('Location: auth.php');
+		}
+	}
+
 	function connecterPDO(){
-	require('../config.php');
+		require('../config.php');
 		try {
 			$linkpdo = new PDO("mysql:host=$host;dbname=$dbname",$login,$mdp);
 		}
@@ -10,6 +18,7 @@
 		}
 		return $linkpdo;
 	}	
+
 	function formulaire($nom) {
 		//BLOC Formulaire
 		?>
@@ -108,9 +117,5 @@
 		</script>
 		<?php
 	} // Fin fonction 
-	
-	if(empty($_SESSION['login'])){
-			header('Location: auth.php');
-	}
 
 ?>

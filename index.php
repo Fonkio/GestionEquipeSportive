@@ -49,7 +49,7 @@
 				<td><?php echo"$data[3]"?></td>
 				<td><?php echo"$data[4]"?></td>
 				<td><?php echo"$data[5]"?></td>
-				<td><a href="modifierJoueur.php">Modifier</a></td>
+				<td><a href=<?php echo"modifierJoueur.php?NumLicence=$data[0]";?>>Modifier</a></td>
 				<td><a href=<?php echo "plusInfo.php?NumLicence=$data[0]";?>>Plus d'info</a></td>
 			</tr>
         </form>

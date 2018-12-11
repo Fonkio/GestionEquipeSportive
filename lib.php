@@ -16,10 +16,12 @@
 			header('Location: auth.php');
 		}
 	}
-	function formul() {
-				//BLOC Formulaire?>
+	function formulaire($nom) {
+				//BLOC Formulaire
+				?>
+				<div class="container-fluid">
 				<br/><h2>Ajouter un joueur :</h2><br/>
-				<form action="ajouterJoueur.php" method="POST" class="needs-validation" novalidate>
+				<form action="<?php echo $nom;?>" method="POST" class="needs-validation" novalidate>
 
 				  <div class="form-row">
 
@@ -103,7 +105,7 @@
 
 				  <button class="btn btn-primary" type="submit" name="Ajouter">Ajouter</button>
 				</form>
-
+				</div>
 				<script>
 				// Example starter JavaScript for disabling form submissions if there are invalid fields
 				(function() {

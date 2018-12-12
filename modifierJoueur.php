@@ -18,22 +18,17 @@
 	//Variables pour remplir le formulaire :
         $id=$_GET['NumLicence'];
         $reqRecherche = $linkpdo->query("SELECT * FROM joueur WHERE NumLicence = $id");
-
       	while($data=$reqRecherche->fetch()){
-		$_POST['NumLicence']=$data['NumLicence'];
-		$_POST['Nom']=$data['Nom'];
-		$_POST['Prenom']=$data['Prenom'];
-		$_POST['Ddn']=$data['DateDeNaissance'];
-		$_POST['Taille']=$data['Taille'];
-		$_POST['Poids']=$data['Poids'];
-		$PostePref=$data['PostePref'];
-		$Statut=$data['Statut'];
+		$tab = array('NumLicence' => $data['NumLicence'],
+			     'Nom' => $data['Nom'],
+			     'Prenom' => $data['Prenom'],
+			     'Ddn' => $data['DateDeNaissance'],
+			     'Taille' => $data['Taille'],
+			     'Poids' => $data['Poids'],
+			     'PostePref' => $data['PostePref'],
+			     'Statut' => $data['Statut']);
 	}
-	echo $ez;
-	echo $ea;
-
-	formulaire("modifierJoueur.php");
-
+	formulaire("modifierJoueur.php", $tab);
     //Faire la requête de modification
     ?>
 </body>

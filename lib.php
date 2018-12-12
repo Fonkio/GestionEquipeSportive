@@ -19,12 +19,11 @@
 		return $linkpdo;
 	}	
 
-	function formulaire($nom, $tab) {
+	function formulaire($nom, $tab, $titre) {
 		//BLOC Formulaire
-		print_r($tab);
 		?>
 		<div class="container-fluid">
-			<br/><h2>Ajouter un joueur :</h2><br/>
+			<br/><h2><?php echo $titre;?> un joueur :</h2><br/>
 			<form action="<?php echo $nom;?>" method="POST" class="needs-validation" novalidate>
 				<div class="form-row">
 			    	<div class="col-md-8 mb-3">

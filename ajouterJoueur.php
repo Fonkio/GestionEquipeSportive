@@ -79,7 +79,7 @@
 					}
 				} 
 				else {
-					formulaire("ajouterJoueur.php",$tab);
+					formulaire("ajouterJoueur.php",$tab, "Ajouter");
 				}
 			}
 			

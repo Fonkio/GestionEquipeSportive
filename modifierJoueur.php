@@ -28,7 +28,7 @@
 			     'PostePref' => $data['PostePref'],
 			     'Statut' => $data['Statut']);
 	}
-	formulaire("modifierJoueur.php", $tab);
+	formulaire("modifierJoueur.php", $tab, "Modifier");
     //Faire la requête de modification
     ?>
 </body>

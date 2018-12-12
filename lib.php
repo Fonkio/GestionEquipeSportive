@@ -92,8 +92,11 @@
 			      		</select>
 			  		</div>
 			  	</div>
-				<button class="btn btn-primary" type="submit" name="Ajouter">Ajouter</button>
+				<button class="btn btn-primary" type="submit" name="Ajouter"><?php echo $titre;?></button>
+				<a class="btn btn-light" href="index.php" role="button">Retour</a>
 			</form>
+
+
 		</div>
 		<script>
 		// Example starter JavaScript for disabling form submissions if there are invalid fields

@@ -8,6 +8,9 @@
       <li class="nav-item active">
         <a class="nav-link" href="ajouterJoueur.php">Ajouter un joueur<span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="match.php">Match<span class="sr-only"></span></a>
+      </li>
     </ul>
   </div>
 	<div class="nav navbar-nav navbar-right">

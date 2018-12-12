@@ -15,11 +15,13 @@
 		<?php
     		require('header.php');
 			require('lib.php');
-
+			$tab = array();
 
 			if((empty($_POST['NumLicence'])||empty($_POST['Nom'])||empty($_POST['Prenom'])||empty($_POST['Ddn'])||empty($_POST['Taille'])||empty($_POST['Poids'])||empty($_POST['PostePref'])||empty($_POST['Statut']))&&isset($_POST['Ajouter'])){
-				echo("Veuillez renseigner tout les champs du formulaire");
-				formulaire("ajouterJoueur.php");
+				echo("Veuillez renseigner tout les champs du formulaire correctement");
+				//Faire un tableau associatif
+				
+				formulaire("ajouterJoueur.php",$tab);
 			}
 			else{
 				if(isset($_POST['Ajouter'])) {
@@ -77,7 +79,7 @@
 					}
 				} 
 				else {
-					formulaire("ajouterJoueur.php");
+					formulaire("ajouterJoueur.php",$tab);
 				}
 			}
 			

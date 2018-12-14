@@ -19,16 +19,16 @@
         $id=$_GET['NumLicence'];
 
     	//Requête de modification
-	if(isset($_POST['Ajouter'])) {
-	$reqModif=$linkpdo -> prepare ("UPDATE joueur SET Nom=:Nom, Prenom =:Prenom, DateDeNaissance=:Ddn, Taille=:Taille, Poids=:Poids, PostePref=:PostePref, Statut=:Statut WHERE NumLicence=:NumLicence");
-	$reqModif->execute(array('Nom'=>$_POST['Nom'],
-				 'Prenom'=>$_POST['Prenom'],
-				 'Ddn'=>$_POST['Ddn'],
-				 'Taille'=>$_POST['Taille'],
-				 'Poids'=>$_POST['Poids'],
-				 'PostePref'=>$_POST['PostePref'],
-				 'Statut'=>$_POST['Statut'],
-				 'NumLicence'=>$_POST['NumLicence']));
+        if(isset($_POST['Ajouter'])) {
+        $reqModif=$linkpdo -> prepare ("UPDATE joueur SET Nom=:Nom, Prenom =:Prenom, DateDeNaissance=:Ddn, Taille=:Taille, Poids=:Poids, PostePref=:PostePref, Statut=:Statut WHERE NumLicence=:NumLicence");
+        $reqModif->execute(array('Nom'=>$_POST['Nom'],
+				                 'Prenom'=>$_POST['Prenom'],
+                                 'Ddn'=>$_POST['Ddn'],
+				                 'Taille'=>$_POST['Taille'],
+				                 'Poids'=>$_POST['Poids'],
+				                 'PostePref'=>$_POST['PostePref'],
+				                 'Statut'=>$_POST['Statut'],
+				                 'NumLicence'=>$_POST['NumLicence']));
 	}
 
 	//Requête de recherche

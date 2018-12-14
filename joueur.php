@@ -14,8 +14,7 @@
 	<?php
 		require('header.php');
 	?>
-	<h2>Joueurs présents :</h2>
-	<!-- Création du tableau-->
+    <h2 style="text-align:center">Joueurs présents</h2>
 	<table class="table">
 		<thead class="thead-dark">
 			<tr>
@@ -59,5 +58,6 @@
 		?>
 			</tbody>
 		</table>
-	</body>
+    <a style="background-color: #818181;" class="btn btn-secondary btn-lg btn-block" href="ajouterJoueur.php" role="button">Ajouter joueur</a>	<!-- Création du tableau-->
+    </body>
 </html>

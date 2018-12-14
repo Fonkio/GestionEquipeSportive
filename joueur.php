@@ -25,16 +25,16 @@
 				<th scope="col">Taille</th>
 				<th scope="col">Poids</th>
 				<th scope="col">Poste préféré</th>
-				<th scope="col"></th><!-- Truc pour modifier-->
-				<th scope="col"></th><!-- Truc pour supprimer-->
-				<!--<td>Commentaire</td>
-				<td>Evaluation</td>-->
+				<th scope="col"> </th><!-- Truc pour modifier-->
+				<th scope="col"> </th><!-- Truc pour plus d'info-->
+                <th scope="col"> </th><!-- Truc pour supprimer-->
+
 			</tr>
-		</thread>
+		</thead>
 		<?php
 			require('lib.php');
 			$linkpdo=connecterPDO();?>
-<form method=POST action=ta_page.php>
+<form method=POST action="">
     <?php
 			//Préparation de la requête
 			$res = $linkpdo->prepare('SELECT NumLicence, Nom, Prenom, Taille, Poids, PostePref FROM joueur');
@@ -47,7 +47,8 @@
 				<td><?php echo"$data[3]"?></td>
 				<td><?php echo"$data[4]"?></td>
 				<td><?php switch($data[5]){ case 1: echo "Tireur";break; case 2: echo"Milieu";break; case 3: echo"Pointeur";break;}?></td>
-				<td><a href=<?php echo"modifierJoueur.php?NumLicence=$data[0]";?>>Modifier</a></td>
+                <td><a href=<?php echo "supprimerJoueur.php?NumLicence=$data[0]";?>>Supprimer</a></td>
+                <td><a href=<?php echo"modifierJoueur.php?NumLicence=$data[0]";?>>Modifier</a></td>
 				<td><a href=<?php echo "plusInfo.php?NumLicence=$data[0]";?>>Plus d'info</a></td>
 			</tr>
         </form>
@@ -56,7 +57,7 @@
 			//On ferme le curseur
 			$res->closeCursor();
 		?>
-			</tbody>
+
 		</table>
     <a style="background-color: #818181;" class="btn btn-secondary btn-lg btn-block" href="ajouterJoueur.php" role="button">Ajouter joueur</a>	<!-- Création du tableau-->
     </body>

@@ -66,14 +66,14 @@
 						echo("Le joueur $nom $prenom a bien été ajouté<br/>");
 						?>
 						<br/>
-						<a href="ajouterJoueur.php"> <button>< Retour</button></a>
-						<?php
+                        <a class="btn btn-light" href=javascript:history.go(-1) role="button">Retour</a>
+                        <?php
 					}
 					else {
 						echo ("Le joueur existe déja (même numéro de licence)");
 						?>
 						<br/>
-						<a href="ajouterJoueur.php"> <button>< Retour</button></a>
+                        <a class="btn btn-light" href=javascript:history.go(-1) role="button">Retour</a>
 						<?php
 					}
 				} 

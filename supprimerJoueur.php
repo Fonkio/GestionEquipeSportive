@@ -25,8 +25,8 @@
        }
 
         if(isset($_POST['Oui'])) {
-                $reqSuppr=$linkpdo -> prepare ("DELETE FROM joueur WHERE NumLicence=:NumLicence");
-                $reqSuppr->execute(array('NumLicence'=>$id));
+                $reqSuppr=$linkpdo -> prepare ("DELETE FROM joueur WHERE NumLicence=:id");
+                $reqSuppr->execute(array('id'=>$id));
             }
 
             if(isset($_POST['Non'])){
@@ -36,7 +36,7 @@
     <h2 style="text-align:center;">Voulez-vous vraiment supprimer le joueur : <?php echo "$Nom $Prenom";?> </h2>
 
     <form action="" method="POST">
-        <button type="submit" class="btn btn-success">Oui</button>
+        <button type="submit" class="btn btn-success" name="Oui">Oui</button>
         <button type="submit" class="btn btn-danger" name="Non" >Non</button>
     </form>
 

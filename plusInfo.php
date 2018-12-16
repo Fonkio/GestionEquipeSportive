@@ -15,7 +15,7 @@
         require('lib.php');
         require('header.php');
         $linkpdo=connecterPDO();
-        $id=htmlentities($_GET['NumLicence'],ENT_QUOTES);
+        $id=sécurisationVariable($_GET['NumLicence']);
 
 
     ?>

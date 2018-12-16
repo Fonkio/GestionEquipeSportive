@@ -19,7 +19,7 @@
 
         $tmp=false;
 
-        $id=htmlentities($_GET['NumLicence'],ENT_QUOTES);
+        $id=sécurisationVariable($_GET['NumLicence']);
 
         $reqRecherche = $linkpdo->query("SELECT Nom,Prenom FROM joueur WHERE NumLicence = $id");
         while($data=$reqRecherche->fetch()){

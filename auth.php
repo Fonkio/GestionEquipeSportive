@@ -39,6 +39,7 @@
                     } else {
                         $_SESSION['login'] = $_POST['login'];
                         $_SESSION['mdp'] = $_POST['mdp'];
+                        creerJeton();
                         header('Location: index.php');
                     }
                 }

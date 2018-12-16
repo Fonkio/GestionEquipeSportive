@@ -8,6 +8,33 @@
 		}
 	}
 
+	function creerJeton(){
+        $token_jeton = md5(time()*rand(1,10));//Création du jeton
+        $_SESSION['jtn_token'] = $token_jeton;//Stockage du jeton dans la session
+        $_SESSION['jtn_token_time'] = time();//TimeStamp de la création du jeton
+
+    }
+
+	function insertJeton(){
+        $token_jeton = $_SESSION['jtn_token']; // récupération du jeton ?>
+        <input type="hidden" name="input_token" id="input_token" value="
+        <?php
+        echo $token_jeton; //Le champ caché a pour valeur le jeton
+        ?>"/>
+        <?php
+    }
+
+	function verifJeton(){
+
+    }
+
+	function sécurisationVariable($var){
+        $var= stripslashes($var); //Supprime les antislashs d'une chaîne et aussi les balises (exemple <strong>)
+        $var = strip_tags($var); // Supprime les balises (code)
+        $var = htmlentities($var);
+        return $var;
+	}
+
 	function connecterPDO(){
 		require('../config.php');
 		try {
@@ -25,7 +52,8 @@
 		<div class="container-fluid">
 			<br/><h2><?php echo $titre;?> un joueur :</h2><br/>
 			<form action="<?php echo $nom;?>" method="POST" class="needs-validation" novalidate>
-				<div class="form-row">
+				<?php insertJeton();?>
+                <div class="form-row">
 			    	<div class="col-md-8 mb-3">
 			      		<label for="validationCustom01">Numéro de licence</label>
 			      		<input type="number" name="NumLicence" class="form-control" id="validationCustom01" placeholder="Numéro de licence" value="<?php if(isset($tab['NumLicence'])){echo($tab['NumLicence']);} ?>" required>

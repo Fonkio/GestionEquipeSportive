@@ -26,6 +26,30 @@
 
 	function verifJeton(){
 
+	    //verif si le jeton est dans le formulaire
+        if(!(isset($_SESSION['jtn_token']) && isset($_SESSION['jtn_token_time']) && isset($_POST['input_token']))){
+            echo "Erreur de jeton, veuillez vous reconnecter.";
+            sleep(5);
+            header('Location : deconnexion.php');
+            exit();
+         }
+        //Si le même jeton entre la session et le formulaire
+        if (!($_SESSION['jtn_token'] == $_POST['input_token']))
+            {
+                echo "Le jeton n'est pas le même. Attention aux tentatives de hacking. Veuillez vous reconnecter.";
+                sleep(5);
+                header('Location : deconnexion.php');
+                exit();
+        }
+
+        $ancien_timestamp = time() - (5 * 60);//stockage du timestamp il y a 5 minutes
+        //Si le jeton est expiré
+        if(!($_SESSION['jtn_token_time'] >= $ancien_timestamp)) {
+            echo "Session expirée. Veuillez vous reconnecter.";
+            sleep(5);
+            header('Location: deconnexion.php');
+            exit();
+        }
     }
 
 	function sécurisationVariable($var){
@@ -52,7 +76,7 @@
 		<div class="container-fluid">
 			<br/><h2><?php echo $titre;?> un joueur :</h2><br/>
 			<form action="<?php echo $nom;?>" method="POST" class="needs-validation" novalidate>
-				<?php insertJeton();?>
+				<?php //insertJeton();?>
                 <div class="form-row">
 			    	<div class="col-md-8 mb-3">
 			      		<label for="validationCustom01">Numéro de licence</label>
@@ -146,7 +170,7 @@
 				}, false);
 			})();
 		</script>
-		<?php
+		<?php //verifJeton();
 	} // Fin fonction 
 
 ?>

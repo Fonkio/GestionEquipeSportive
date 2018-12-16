@@ -16,7 +16,7 @@
         require('header.php');
         $linkpdo=connecterPDO();
 	//Variables pour remplir le formulaire :
-        $id=$_GET['NumLicence'];
+        $id=htmlentities($_GET['NumLicence'],ENT_QUOTES);
 
     	//Requête de modification
         if(isset($_POST['Ajouter'])) {

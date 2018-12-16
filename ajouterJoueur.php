@@ -38,14 +38,14 @@
 					$nb = $reqList->rowCount();
 
 					if ($nb == 0) {
-						$numLicence=$_POST['NumLicence'];
-						$nom=$_POST['Nom'];
-						$prenom=$_POST['Prenom'];
-						$ddn=$_POST['Ddn'];
-						$taille=$_POST['Taille'];
-						$poids=$_POST['Poids'];
-						$postePref=$_POST['PostePref'];
-						$statut=$_POST['Statut'];
+						$numLicence=htmlentities($_POST['NumLicence'],ENT_QUOTES);
+						$nom=htmlentities($_POST['Nom'],ENT_QUOTES);
+						$prenom=htmlentities($_POST['Prenom'], ENT_QUOTES);
+						$ddn=htmlentities($_POST['Ddn'],ENT_QUOTES);
+						$taille=htmlentities($_POST['Taille'],ENT_QUOTES);
+						$poids=htmlentities($_POST['Poids'],ENT_QUOTES);
+						$postePref=htmlentities($_POST['PostePref'],ENT_QUOTES);
+						$statut=htmlentities($_POST['Statut'],ENT_QUOTES);
 
 						$linkpdo=connecterPDO();
 						

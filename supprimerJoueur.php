@@ -11,12 +11,15 @@
     <title>Accueil</title>
 </head>
 <body>
+
     <?php
         require('header.php');
         require('lib.php');
         $linkpdo=connecterPDO();
 
-        $id=$_GET['NumLicence'];
+        $tmp=false;
+
+        $id=htmlentities($_GET['NumLicence'],ENT_QUOTES);
 
         $reqRecherche = $linkpdo->query("SELECT Nom,Prenom FROM joueur WHERE NumLicence = $id");
         while($data=$reqRecherche->fetch()){
@@ -27,13 +30,19 @@
         if(isset($_POST['Oui'])) {
                 $reqSuppr=$linkpdo -> prepare ("DELETE FROM joueur WHERE NumLicence=:id");
                 $reqSuppr->execute(array('id'=>$id));
+                $h2="Le joueur $Nom $Prenom a bien été supprimé.";
+                $tmp=true;
             }
 
             if(isset($_POST['Non'])){
                 header('Location: joueur.php');
             }
+        if($tmp==false){
+            $h2="Voulez-vous vraiment supprimer le joueur : $Nom $Prenom";
+        }
     ?>
-    <h2 style="text-align:center;">Voulez-vous vraiment supprimer le joueur : <?php echo "$Nom $Prenom";?> </h2>
+
+    <h2 style="text-align:center;"><?php echo "$h2";?> </h2>
 
     <form action="" method="POST">
         <button type="submit" class="btn btn-success" name="Oui">Oui</button>

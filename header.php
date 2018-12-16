@@ -14,8 +14,11 @@
     </ul>
   </div>
 	<div class="nav navbar-nav navbar-right">
+     <li class="nav-item active">
+         <a class="nav-link" href="parametre.php"> Paramètre </a>
+     </li>
 	<li class="nav-item active">
-	 <a class="nav-link" href="deconnexion.php"> Se déconnecter </a>
+        <a class="nav-link" href="deconnexion.php"> Se déconnecter </a>
 	</li>
 	</div>
 </nav>

@@ -14,8 +14,7 @@
 
 		<?php
 				//Variables pour vérifier le login et le mdp. A mettre dans une BDD après
-				$login_valide='lapin';
-				$psswd_valide='canard';
+
 				require('lib.php');//Appel connexion BBD
 				$linkpdo=connecterPDO();
 

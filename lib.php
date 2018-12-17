@@ -176,4 +176,62 @@
 		<?php //verifJeton();
 	} // Fin fonction 
 
+	function formulaireMatch() {
+		//BLOC Formulaire
+		?>
+		<div class="container-fluid">
+			<br/><h2>Ajouter un match :</h2><br/>
+			<form action="ajouterMatch.php" method="POST" class="needs-validation" novalidate>
+                <div class="form-row">
+			    	<div class="col-md-8 mb-3">
+			      		<label for="validationCustom01">Date</label>
+			      		<input type="text" name="DateR" class="form-control" id="validationCustom01" placeholder="JJ/MM/AAAA" required>
+			      		<div class="invalid-feedback">
+			        	Veuillez rentrer la date du match.
+			      		</div>
+			   		</div>  
+			  	</div>
+				<div class="form-row">
+			  		<div class="col-md-4 mb-3">
+			  			<label for="validationCustom07">Poste favoris</label>
+			  			<select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name='Lieu'>
+							<option value="Domicile">Domicile</option>
+							<option value="Exterieur">Extérieur</option>
+			      		</select>
+			  		</div>
+			  		<div class="col-md-4 mb-3">
+			      		<label for="validationCustom03">Adveraire</label>
+			      		<input type="text" name="Adversaire" class="form-control" id="validationCustom03" placeholder="Nom équipe adverse" required>
+			      		<div class="invalid-feedback">
+			        	Veuillez rentrer le nom de l'équipe adverse.
+			      		</div>
+			    	</div>
+			  	</div>
+				<button class="btn btn-primary" type="submit" name="Ajouter">Ajouter</button>
+				<a class="btn btn-light" href=javascript:history.go(-1) role="button">Retour</a>
+			</form>
+		</div>
+		<script>
+		// Example starter JavaScript for disabling form submissions if there are invalid fields
+			(function() {
+				'use strict';
+			  	window.addEventListener('load', function() {
+				    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+				    var forms = document.getElementsByClassName('needs-validation');
+				    // Loop over them and prevent submission
+				    var validation = Array.prototype.filter.call(forms, function(form) {
+				    	form.addEventListener('submit', function(event) {
+					        if (form.checkValidity() === false) {
+					          	event.preventDefault();
+					          	event.stopPropagation();
+					        }
+				        form.classList.add('was-validated');
+				      	}, false);
+				    });
+				}, false);
+			})();
+		</script>
+		<?php
+	} // Fin fonction 
+
 ?>

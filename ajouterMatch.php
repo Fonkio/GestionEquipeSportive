@@ -17,7 +17,7 @@
 			require('lib.php');
 			$tab = array();
 
-			if((empty($_POST['DateR'])||empty($_POST['Lieu'])||empty($_POST['Adversaire'])||empty($_POST['RNous'])||empty($_POST['REux']))&&isset($_POST['Ajouter'])){
+			if((empty($_POST['DateR'])||empty($_POST['Adversaire']))&&isset($_POST['Ajouter'])){
 				echo("Veuillez renseigner tout les champs du formulaire correctement");
 				formulaireMatch();
 			}
@@ -30,8 +30,6 @@
 					$DateR=sécurisationVariable($_POST['DateR']);
 					$Lieu=sécurisationVariable($_POST['Lieu']);
 					$Adversaire=sécurisationVariable($_POST['Adversaire']);
-					$RNous=sécurisationVariable($_POST['RNous']);
-					$REux=sécurisationVariable($_POST['REux']);
 
 					$linkpdo=connecterPDO();
 					
@@ -39,23 +37,18 @@
 					$reqAjout = $linkpdo->prepare("INSERT INTO rencontre (
 												DateRencontre,
 												LieuRencontre,
-												EquipeAdverse,
-												ResultatEquipe,
-												ResultatAdverse) 
+												EquipeAdverse) 
 												VALUES (:DateR,
 												:Lieu,
-												:Adversaire,
-												:RNous,
-												:REux");
+												:Adversaire)");
 					//Exécution requête ajout
 					$tab_param = array(
 					'DateR'=>$DateR,
 					'Lieu'=>$Lieu,
-					'Adversaire'=>$Adversaire,
-					'RNous'=>$RNous,
-					'REux'=>$REux);
+					'Adversaire'=>$Adversaire);
 					$reqAjout->execute($tab_param);
 					echo("Le match contre $Adversaire a bien été ajouté<br/>");
+					print_r($reqAjout->errorInfo());
 					?>
 					<br/>
                     <a class="btn btn-light" href=javascript:history.go(-1) role="button">Retour</a>

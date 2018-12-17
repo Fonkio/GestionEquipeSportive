@@ -14,7 +14,8 @@
 	<?php
 		require('header.php');
 	?>
-    <h2 style="text-align:center">Matchs joués</h2>
+</br>
+    <h2 style="text-align:center">Matchs joués</h2></br>
 	<table class="table">
 		<thead class="thead-dark">
 			<tr>
@@ -40,7 +41,12 @@
 				<td><?php echo"$data[1]"?></td>
 				<td><?php echo"$data[2]"?></td>
 				<td><?php echo"$data[3]"?></td>
-				<td><?php echo"$data[4] - $data[5]"?></td>
+				<td><?php
+					if(is_null($data[4])&&is_null($data[5])){
+						echo ("Trouver un moy rentrer score");
+					} else
+						echo("$data[4] - $data[5]");
+					?>
                 <td><a href=<?php echo "supprimerMatch.php?IdMatch=$data[0]";?>>Supprimer</a></td>
 			</tr>
         </form>

@@ -10,8 +10,14 @@
 
         <title>Se connecter</title>
     </head>
-	<body>
+	<body style="color:black;
+background-color:black;
+background-image:url(https://amicalecoteauessert.files.wordpress.com/2017/05/petanque.jpg);
+background-repeat:no-repeat;">
 
+
+
+<div class="row justify-content-md-center">
 		<?php
 				//Variables pour vérifier le login et le mdp. A mettre dans une BDD après
 
@@ -23,10 +29,27 @@
                     if (empty($_POST['login']) && empty($_POST['mdp'])) {//Si les variables formulaires sont vides
 
                         ?>
-                        <form action="" method="post">
-                            Login <input type="text" name="login"/>
-                            Mot de passe <input type="password" name="mdp"/>
-                            <input name="op" type="submit" value="Valider"/>
+                        <form action="" method="post" class="needs-validation" style="margin-top: 100px; padding-top: 20px;padding-left: 40px;padding-bottom: 40px; background-color: white; border-radius: 10px;">
+                        <h4>Se connecter</h4></br>
+                        <div class="form-row">
+                            <div class="col-md-10 mb-3">
+                                <label for="validationCustom01">Identifiant</label>
+                                <input type="text" name="login" class="form-control" id="validationCustom01" placeholder="Login" required>
+                                <div class="invalid-feedback">
+                                    Veuillez rentrer un identifiant.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-10 mb-3">
+                                <label for="validationCustom01">Mot de passe</label>
+                                <input type="password" name="mdp" class="form-control" id="validationCustom02" required>
+                                <div class="invalid-feedback">
+                                    Veuillez rentrer un mot de passe.
+                                </div>
+                            </div>
+                        </div>
+                            <button class="btn btn-primary" type="submit" name="op">Se connecter</button>
                         </form>
 
                         <?php
@@ -43,5 +66,6 @@
                     }
                 }
 		?>
+    </div>
 	</body>
 </html>

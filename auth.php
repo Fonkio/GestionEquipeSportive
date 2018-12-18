@@ -53,10 +53,12 @@
                         </form>
 
                         <?php
-                    } //Si le login est faux
+                    //Si le login est faux
+                    }
                     elseif ($_POST['login'] != $login_valide) {
                         header('Location: authErrLogin.php');
-                    } elseif ($_POST['mdp'] != $psswd_valide) {
+                    } 
+                    elseif ($_POST['mdp'] != $mdp_valide) {
                         header('Location: authErrMdp.php');
                     } else {
                         $_SESSION['login'] = $_POST['login'];

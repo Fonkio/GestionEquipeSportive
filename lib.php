@@ -1,9 +1,9 @@
 <?php
 	session_start();
 
-     $login_valide='lapin';
-     $psswd_valide='canard';
-
+    $login_valide=rechercheLogin();
+    $mdp_valide=rechercheMdp();
+                    
 	if(!(strrchr($_SERVER['SCRIPT_NAME'],'/')=="/auth.php" || strrchr($_SERVER['SCRIPT_NAME'],'/')=="/authErrLogin.php" || strrchr($_SERVER['SCRIPT_NAME'],'/')=="/authErrMdp.php"))
 	{
 		if(empty($_SESSION['login'])){
@@ -62,6 +62,26 @@
         return $var;
 	}
 
+	function rechercheLogin(){
+		$linkpdo = connecterPDO();
+		$reqRecherche = $linkpdo -> prepare("SELECT * FROM identifiant WHERE id=:id");
+		$reqRecherche -> execute(array('id'=>1));
+	    while($data=$reqRecherche->fetch()){
+        	$Login=$data['Login'];
+        }
+    return $Login;
+	}
+	
+	function rechercheMdp(){
+		$linkpdo = connecterPDO();
+		$reqRecherche = $linkpdo -> prepare("SELECT * FROM identifiant WHERE id=:id");
+		$reqRecherche -> execute(array('id'=>1));
+	    while($data=$reqRecherche->fetch()){
+        	$Mdp=$data['Mdp'];
+        }
+    return $Mdp;
+	}
+	
 	function connecterPDO(){
 		require('../config.php');
 		try {

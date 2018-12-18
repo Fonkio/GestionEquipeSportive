@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title>Accueil</title>
+    <title>Paramètres</title>
 </head>
 <body>
     <?php
@@ -23,10 +23,10 @@
             $Login=$data['Login'];
             $Mdp=$data['Mdp'];
         }
-       echo "$Login et $Mdp";
-
+	
+	//On gère le login
         if(isset($_POST['Modifier_Login'])){
-            //Sécurisation du login rentré
+            //Sécurisation du login entré
             $tmp=sécurisationVariable($_POST['Login']);
 
             if($tmp==$Login){
@@ -34,16 +34,29 @@
             }
             else{
                 $Login=$tmp;
-                $reqModif = $linkpdo -> prepare("UPDATE identifiant SET Login=$Login WHERE id=:id");
-                $reqModif -> execute(array('id'=>1));
+                $reqModif = $linkpdo -> prepare("UPDATE identifiant SET Login=:tmp WHERE id=:id");
+                $reqModif -> execute(array('id'=>1,'tmp'=>$tmp));
                 echo "Login changé";
             }
         }
 
+	//On gère le mdp
         if(isset($_POST['Modifier_Passwd'])){
-            echo 'Zezez';
+            //Sécurisation du mdp entré
+            $tmp=sécurisationVariable($_POST['Mdp']);
+            
+            if($tmp==$Mdp){
+                echo "C'est le même mot de passe";
+            }
+            else{
+                $Mdp=$tmp;
+                $reqModif = $linkpdo -> prepare("UPDATE identifiant SET Mdp=:tmp WHERE id=:id");
+                $reqModif -> execute(array('id'=>1,'tmp'=>$tmp));
+                echo "Mdp changé";
+            }
         }
     ?>
+    
     <h3>Changer le login :</h3>
     <form action="" method="POST">
         <input type="text" name="Login" value="<?php echo"$Login";?>" />
@@ -53,7 +66,7 @@
     <br />
     <h3>Changer le mot de passe :</h3>
     <form action="" method="POST">
-        <input type="password" name="Password" />
+        <input type="password" name="Mdp" />
         <button class="btn btn-primary" type="submit" name="Modifier_Passwd">Modifier</button>
     </form>
 </body>

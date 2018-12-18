@@ -1,8 +1,8 @@
 <?php
 	session_start();
 
-    $login_valide='lapin';
-    $psswd_valide='canard';
+     $login_valide='lapin';
+     $psswd_valide='canard';
 
 	if(!(strrchr($_SERVER['SCRIPT_NAME'],'/')=="/auth.php" || strrchr($_SERVER['SCRIPT_NAME'],'/')=="/authErrLogin.php" || strrchr($_SERVER['SCRIPT_NAME'],'/')=="/authErrMdp.php"))
 	{

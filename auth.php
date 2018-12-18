@@ -11,9 +11,9 @@
         <title>Se connecter</title>
     </head>
 	<body style="color:black;
-background-color:black;
-background-image:url(https://amicalecoteauessert.files.wordpress.com/2017/05/petanque.jpg);
-background-repeat:no-repeat;">
+                background-image:url(https://amicalecoteauessert.files.wordpress.com/2017/05/petanque.jpg);
+                background-size: 100%;
+                background-repeat:no-repeat;">
 
 
 
@@ -31,7 +31,7 @@ background-repeat:no-repeat;">
                         ?>
                         <form action="" method="post" class="needs-validation" style="margin-top: 100px; padding-top: 20px;padding-left: 40px;padding-bottom: 40px; background-color: white; border-radius: 10px;">
                         <h4>Se connecter</h4></br>
-                        <div class="form-row">
+                        <div class="">
                             <div class="col-md-10 mb-3">
                                 <label for="validationCustom01">Identifiant</label>
                                 <input type="text" name="login" class="form-control" id="validationCustom01" placeholder="Login" required>
@@ -40,7 +40,7 @@ background-repeat:no-repeat;">
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
+                        <div class="">
                             <div class="col-md-10 mb-3">
                                 <label for="validationCustom01">Mot de passe</label>
                                 <input type="password" name="mdp" class="form-control" id="validationCustom02" required>

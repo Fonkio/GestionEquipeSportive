@@ -20,19 +20,21 @@
 
     	//Requête de modification
         if(isset($_POST['Ajouter'])) {
-        $reqModif=$linkpdo -> prepare ("UPDATE joueur SET Nom=:Nom, Prenom =:Prenom, DateDeNaissance=:Ddn, Taille=:Taille, Poids=:Poids, PostePref=:PostePref, Statut=:Statut WHERE NumLicence=:NumLicence");
-        $reqModif->execute(array('Nom'=>$_POST['Nom'],
-				                 'Prenom'=>$_POST['Prenom'],
-                                 'Ddn'=>$_POST['Ddn'],
-				                 'Taille'=>$_POST['Taille'],
-				                 'Poids'=>$_POST['Poids'],
-				                 'PostePref'=>$_POST['PostePref'],
-				                 'Statut'=>$_POST['Statut'],
-				                 'NumLicence'=>$_POST['NumLicence']));
+        $reqModif = $linkpdo -> prepare("UPDATE joueur SET Nom=:Nom, Prenom =:Prenom, DateDeNaissance=:Ddn, Taille=:Taille, Poids=:Poids, PostePref=:PostePref, Statut=:Statut WHERE NumLicence=:NumLicence");
+        $reqModif -> execute(array('Nom'=>sécurisationVariable($_POST['Nom']),
+				                 'Prenom'=>sécurisationVariable($_POST['Prenom']),
+                                 'Ddn'=>sécurisationVariable($_POST['Ddn']),
+				                 'Taille'=>sécurisationVariable($_POST['Taille']),
+				                 'Poids'=>sécurisationVariable($_POST['Poids']),
+				                 'PostePref'=>sécurisationVariable($_POST['PostePref']),
+				                 'Statut'=>sécurisationVariable($_POST['Statut']),
+				                 'NumLicence'=>sécurisationVariable($_POST['NumLicence'])));
+        echo "Joueur modifié";
 	}
 
 	//Requête de recherche
-        $reqRecherche = $linkpdo->query("SELECT * FROM joueur WHERE NumLicence = $id");
+        $reqRecherche = $linkpdo -> prepare("SELECT * FROM joueur WHERE NumLicence = :id");
+        $reqRecherche -> execute(array('id'=>$id));
 
 	//Initialisation dans un tableau
       	while($data=$reqRecherche->fetch()){

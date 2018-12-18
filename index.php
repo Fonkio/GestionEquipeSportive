@@ -16,6 +16,8 @@
        require('lib.php');
     ?>
     <h1 style="text-align:center;">Mettre les stats ici</h1>
+
+	
 </body>
 </html>
 

@@ -5,4 +5,6 @@
 		session_destroy();
 	}
 	header('Location: auth.php');
+
+//date(Y-m-d,"strtotime($arg)")
 ?>

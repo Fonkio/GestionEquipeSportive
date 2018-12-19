@@ -98,8 +98,8 @@
 		?>
 		<div class="container-fluid">
 			<br/><h2><?php echo $titre;?> un joueur :</h2><br/>
-			<form action="<?php echo $nom;?>" method="POST" class="needs-validation" novalidate>
-				<?php //insertJeton();?>
+			<form action="<?php echo $nom;?>" enctype="multipart/form-data"  method="POST" class="needs-validation" novalidate>
+				<!--<?php //insertJeton();?>-->
                 <div class="form-row">
 			    	<div class="col-md-8 mb-3">
 			      		<label for="validationCustom01">Numéro de licence</label>
@@ -165,6 +165,14 @@
 							<option <?php if(isset($tab['Statut'])){if($tab['Statut']==3){echo "selected";}} ?> value="3">Suspendu</option>
 							<option <?php if(isset($tab['Statut'])){if($tab['Statut']==4){echo "selected";}} ?> value="4">Absent</option>
 			      		</select>
+			  		</div>
+			  	</div>
+			  	<div class="form-row">
+			  		<div class="col-md-4 mb-3">
+			  		<label>Photo</label><br/>
+			  		<input type="hidden" name="MAX_FILE_SIZE" value="100000"/>
+			  		<input type="file" name="Image">
+
 			  		</div>
 			  	</div>
 				<button class="btn btn-primary" type="submit" name="Ajouter"><?php echo $titre;?></button>

@@ -28,15 +28,7 @@
 			</tr>
 		</thead>
 		<?php
-			require('lib.php');
-			if(isset($_POST['Modif'])) {
-				$linkpdo=connecterPDO();
-				$res = $linkpdo->prepare('UPDATE rencontre SET ResultatEquipe = :rn, ResultatAdverse = :re WHERE IdRencontre = :id');
-				$res->execute(array(
-					'rn' => $_POST['RN'],
-					're' => $_POST['RE'],
-					'id' => $_POST['ID']));
-			}
+			
 			
 			$linkpdo=connecterPDO();?>
     <?php

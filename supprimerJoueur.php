@@ -34,20 +34,28 @@
                 $tmp=true;
             }
 
-            if(isset($_POST['Non'])){
-                header('Location: joueur.php');
-            }
         if($tmp==false){
             $h2="Voulez-vous vraiment supprimer le joueur : $Nom $Prenom";
         }
     ?>
 
     <h2 style="text-align:center;"><?php echo "$h2";?> </h2>
-
-    <form action="" method="POST">
-        <button type="submit" class="btn btn-success" name="Oui">Oui</button>
-        <button type="submit" class="btn btn-danger" name="Non" >Non</button>
-    </form>
+	<?php
+		if($tmp==false){
+	?>
+   <form action="" method="POST">
+      <button type="submit" class="btn btn-success" name="Oui">Oui</button>
+      <a class="btn btn-danger" href="joueur.php" name="Non" role="button">Non</a>  
+   </form>
+   <?php
+   		}
+  	 	else
+   		{
+   	?>
+   		<a class="btn btn-light" href="joueur.php" role="button">Retour</a>
+   	<?php
+   		}
+   	?>
 
 </body>
 </html>

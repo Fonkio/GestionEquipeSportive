@@ -1,9 +1,9 @@
 <?php
 	session_start();
 
-     $login_valide='lapin';
-     $psswd_valide='canard';
-
+    $login_valide=rechercheLogin();
+    $mdp_valide=rechercheMdp();
+                    
 	if(!(strrchr($_SERVER['SCRIPT_NAME'],'/')=="/auth.php" || strrchr($_SERVER['SCRIPT_NAME'],'/')=="/authErrLogin.php" || strrchr($_SERVER['SCRIPT_NAME'],'/')=="/authErrMdp.php"))
 	{
 		if(empty($_SESSION['login'])){
@@ -62,6 +62,26 @@
         return $var;
 	}
 
+	function rechercheLogin(){
+		$linkpdo = connecterPDO();
+		$reqRecherche = $linkpdo -> prepare("SELECT * FROM identifiant WHERE id=:id");
+		$reqRecherche -> execute(array('id'=>1));
+	    while($data=$reqRecherche->fetch()){
+        	$Login=$data['Login'];
+        }
+    return $Login;
+	}
+	
+	function rechercheMdp(){
+		$linkpdo = connecterPDO();
+		$reqRecherche = $linkpdo -> prepare("SELECT * FROM identifiant WHERE id=:id");
+		$reqRecherche -> execute(array('id'=>1));
+	    while($data=$reqRecherche->fetch()){
+        	$Mdp=$data['Mdp'];
+        }
+    return $Mdp;
+	}
+	
 	function connecterPDO(){
 		require('../config.php');
 		try {
@@ -78,8 +98,8 @@
 		?>
 		<div class="container-fluid">
 			<br/><h2><?php echo $titre;?> un joueur :</h2><br/>
-			<form action="<?php echo $nom;?>" method="POST" class="needs-validation" novalidate>
-				<?php //insertJeton();?>
+			<form action="<?php echo $nom;?>" enctype="multipart/form-data"  method="POST" class="needs-validation" novalidate>
+				<!--<?php //insertJeton();?>-->
                 <div class="form-row">
 			    	<div class="col-md-8 mb-3">
 			      		<label for="validationCustom01">Numéro de licence</label>
@@ -145,6 +165,14 @@
 							<option <?php if(isset($tab['Statut'])){if($tab['Statut']==3){echo "selected";}} ?> value="3">Suspendu</option>
 							<option <?php if(isset($tab['Statut'])){if($tab['Statut']==4){echo "selected";}} ?> value="4">Absent</option>
 			      		</select>
+			  		</div>
+			  	</div>
+			  	<div class="form-row">
+			  		<div class="col-md-4 mb-3">
+			  		<label>Photo</label><br/>
+			  		<input type="hidden" name="MAX_FILE_SIZE" value="100000"/>
+			  		<input type="file" name="Image">
+
 			  		</div>
 			  	</div>
 				<button class="btn btn-primary" type="submit" name="Ajouter"><?php echo $titre;?></button>

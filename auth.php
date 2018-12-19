@@ -17,7 +17,7 @@
 
 
 
-<div class="row justify-content-md-center">
+<div class="" style="margin-left: 30%; margin-right: 30%">
 		<?php
 				//Variables pour vérifier le login et le mdp. A mettre dans une BDD après
 

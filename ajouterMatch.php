@@ -48,10 +48,9 @@
 					'Adversaire'=>$Adversaire);
 					$reqAjout->execute($tab_param);
 					echo("Le match contre $Adversaire a bien été ajouté<br/>");
-					print_r($reqAjout->errorInfo());
 					?>
 					<br/>
-                    <a class="btn btn-light" href=javascript:history.go(-1) role="button">Retour</a>
+                    <a class="btn btn-light" href="match.php">Retour</a>
                     <?php
 				}
 				else {

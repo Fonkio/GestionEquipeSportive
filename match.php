@@ -29,8 +29,16 @@
 		</thead>
 		<?php
 			require('lib.php');
+			if(isset($_POST['Modif'])) {
+				$linkpdo=connecterPDO();
+				$res = $linkpdo->prepare('UPDATE rencontre SET ResultatEquipe = :rn, ResultatAdverse = :re WHERE IdRencontre = :id');
+				$res->execute(array(
+					'rn' => $_POST['RN'],
+					're' => $_POST['RE'],
+					'id' => $_POST['ID']));
+			}
+			
 			$linkpdo=connecterPDO();?>
-<form method=POST action="">
     <?php
 			//Préparation de la requête
 			$res = $linkpdo->prepare('SELECT * FROM rencontre');
@@ -42,7 +50,12 @@
 				<td><?php echo"$data[3]"?></td>
 				<td><?php
 					if(is_null($data[4])&&is_null($data[5])){
-						echo ("Trouver un moy rentrer score");
+						?>
+						<!-- Button to Open the Modal -->
+						<a href="ajouterScoreMatch.php?ID=<?php echo($data[0]); ?>"><button type="button" class="btn btn-primary">
+							Ajouter un score
+						</button></a>
+						<?php
 					} else
 						echo("$data[4] - $data[5]");
 					?>
@@ -57,5 +70,5 @@
 
 		</table>
     <a style="background-color: #818181;" class="btn btn-secondary btn-lg btn-block" href="ajouterMatch.php" role="button">Ajouter match</a>	<!-- Création du tableau-->
-    </body>
+</body>
 </html>

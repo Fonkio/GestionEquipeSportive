@@ -213,7 +213,7 @@
                 <div class="form-row">
 			    	<div class="col-md-8 mb-3">
 			      		<label for="validationCustom01">Date</label>
-			      		<input type="text" name="DateR" class="form-control" id="validationCustom01" placeholder="JJ/MM/AAAA" required>
+			      		<input type="text" name="DateR" class="form-control" id="validationCustom01" placeholder="JJ/MM/AAAA" value="<?php if(isset($_POST['DateR'])){echo $_POST['DateR'];} ?>" required>
 			      		<div class="invalid-feedback">
 			        	Veuillez rentrer la date du match.
 			      		</div>
@@ -221,20 +221,109 @@
 			  	</div>
 				<div class="form-row">
 			  		<div class="col-md-4 mb-3">
-			  			<label for="validationCustom07">Poste favoris</label>
+			  			<label for="validationCustom07">Lieu</label>
 			  			<select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name='Lieu'>
-							<option value="Domicile">Domicile</option>
-							<option value="Exterieur">Extérieur</option>
+							<option value="Domicile" <?php if(isset($_POST['Lieu'])){if($_POST['Lieu']=='Domicile'){echo "selected";}} ?>>Domicile</option>
+							<option value="Exterieur" <?php if(isset($_POST['Lieu'])){if($_POST['Lieu']=='Exterieur'){echo "selected";}} ?>>Extérieur</option>
 			      		</select>
 			  		</div>
 			  		<div class="col-md-4 mb-3">
 			      		<label for="validationCustom03">Adveraire</label>
-			      		<input type="text" name="Adversaire" class="form-control" id="validationCustom03" placeholder="Nom équipe adverse" required>
+			      		<input type="text" name="Adversaire" class="form-control" id="validationCustom03" placeholder="Nom équipe adverse" value="<?php if(isset($_POST['Adversaire'])){echo $_POST['Adversaire'];} ?>" required>
 			      		<div class="invalid-feedback">
 			        	Veuillez rentrer le nom de l'équipe adverse.
 			      		</div>
 			    	</div>
 			  	</div>
+			  	<h3>Joueurs et remplaçant :</h3>
+			  	<div class="form-row">
+			  		<div class="col-md-3 mb-3">
+			  			<label for="validationCustom07">Tireur</label>
+			  			<select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name='jt'>
+			  			<option value="-1" <?php if(isset($_POST['jt'])){if($_POST['jt']==-1){echo "selected";}}else{echo "selected";} ?>>Selectionner ...</option>
+			  				<?php 
+			  					$linkpdo=connecterPDO();
+			  					$res = $linkpdo->prepare('SELECT NumLicence, Nom, Prenom, Taille, Poids, PostePref FROM joueur WHERE Statut = 1');
+								$res->execute(array());
+								while(($data = $res->fetch())) {?>
+									<option value="<?php echo $data[0]; ?>" <?php if(isset($_POST['jt'])){if($_POST['jt']==$data[0]){echo "selected";}} ?>><?php echo("$data[1] $data[2]"); ?></option>
+								<?php }
+			  				 ?>
+			      		</select>
+			      	</div>
+			      	<div class="col-md-3 mb-3">
+			  			<label for="validationCustom07">Millieu</label>
+			  			<select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name='jm'>
+			  				<option value="-1" <?php if(isset($_POST['jm'])){if($_POST['jm']==-1){echo "selected";}}else{echo "selected";} ?>>Selectionner ...</option>
+			  				<?php 
+			  					$linkpdo=connecterPDO();
+			  					$res = $linkpdo->prepare('SELECT NumLicence, Nom, Prenom, Taille, Poids, PostePref FROM joueur WHERE Statut = 1');
+								$res->execute(array());
+								while(($data = $res->fetch())) {?>
+									<option value="<?php echo $data[0]; ?>" <?php if(isset($_POST['jm'])){if($_POST['jm']==$data[0]){echo "selected";}} ?>><?php echo("$data[1] $data[2]"); ?></option>
+								<?php }
+			  				 ?>
+			      		</select>
+			      	</div>
+			      	<div class="col-md-3 mb-3">
+			  			<label for="validationCustom07">Pointeur</label>
+			  			<select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name='jp'>
+			  				<option value="-1" <?php if(isset($_POST['jp'])){if($_POST['jp']==-1){echo "selected";}}else{echo "selected";} ?>>Selectionner ...</option>
+			  				<?php 
+			  					$linkpdo=connecterPDO();
+			  					$res = $linkpdo->prepare('SELECT NumLicence, Nom, Prenom, Taille, Poids, PostePref FROM joueur WHERE Statut = 1');
+								$res->execute(array());
+								while(($data = $res->fetch())) {?>
+									<option value="<?php echo $data[0]; ?>" <?php if(isset($_POST['jp'])){if($_POST['jp']==$data[0]){echo "selected";}} ?>><?php echo("$data[1] $data[2]"); ?></option>
+								<?php }
+			  				 ?>
+			      		</select>
+			      	</div>
+			   	</div>
+			   	<div class="form-row">
+			  		<div class="col-md-3 mb-3">
+			  			<label for="validationCustom07">Remplaçant 1</label>
+			  			<select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name='r1'>
+			  				<option value="-1" <?php if(isset($_POST['r1'])){if($_POST['r1']==-1){echo "selected";}}else{echo "selected";} ?>>Selectionner ...</option>
+			  				<?php 
+			  					$linkpdo=connecterPDO();
+			  					$res = $linkpdo->prepare('SELECT NumLicence, Nom, Prenom, Taille, Poids, PostePref FROM joueur WHERE Statut = 1');
+								$res->execute(array());
+								while(($data = $res->fetch())) {?>
+									<option value="<?php echo $data[0]; ?>" <?php if(isset($_POST['r1'])){if($_POST['r1']==$data[0]){echo "selected";}} ?>><?php echo("$data[1] $data[2]"); ?></option>
+								<?php }
+			  				 ?>
+			      		</select>
+			      	</div>
+			      	<div class="col-md-3 mb-3">
+			  			<label for="validationCustom07">Remplaçant 2</label>
+			  			<select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name='r2'>
+			  				<option value="-1" <?php if(isset($_POST['r2'])){if($_POST['r2']==-1){echo "selected";}}else{echo "selected";} ?>>Selectionner ...</option>
+			  				<?php 
+			  					$linkpdo=connecterPDO();
+			  					$res = $linkpdo->prepare('SELECT NumLicence, Nom, Prenom, Taille, Poids, PostePref FROM joueur WHERE Statut = 1');
+								$res->execute(array());
+								while(($data = $res->fetch())) {?>
+									<option value="<?php echo $data[0]; ?>" <?php if(isset($_POST['r2'])){if($_POST['r2']==$data[0]){echo "selected";}} ?>><?php echo("$data[1] $data[2]"); ?></option>
+								<?php }
+			  				 ?>
+			      		</select>
+			      	</div>
+			      	<div class="col-md-3 mb-3">
+			  			<label for="validationCustom07">Remplaçant 3</label>
+			  			<select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name='r3'>
+			  				<option value="-1" <?php if(isset($_POST['r3'])){if($_POST['r3']==-1){echo "selected";}}else{echo "selected";} ?>>Selectionner ...</option>
+			  				<?php 
+			  					$linkpdo=connecterPDO();
+			  					$res = $linkpdo->prepare('SELECT NumLicence, Nom, Prenom, Taille, Poids, PostePref FROM joueur WHERE Statut = 1');
+								$res->execute(array());
+								while(($data = $res->fetch())) {?>
+									<option value="<?php echo $data[0]; ?>" <?php if(isset($_POST['r3'])){if($_POST['r3']==$data[0]){echo "selected";}} ?>><?php echo("$data[1] $data[2]"); ?></option>
+								<?php }
+			  				 ?>
+			      		</select>
+			      	</div>
+			   	</div>
 				<button class="btn btn-primary" type="submit" name="Ajouter">Ajouter</button>
 				<a class="btn btn-light" href=javascript:history.go(-1) role="button">Retour</a>
 			</form>

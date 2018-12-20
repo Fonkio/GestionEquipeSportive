@@ -50,7 +50,7 @@
 				<td><?php switch($data[5]){ case 1: echo "Tireur";break; case 2: echo"Milieu";break; case 3: echo"Pointeur";break;}?></td>
                 <td><a href=<?php echo "supprimerJoueur.php?NumLicence=$data[0]";?>>Supprimer</a></td>
                 <td><a href=<?php echo"modifierJoueur.php?NumLicence=$data[0]";?>>Modifier</a></td>
-				<td><a href=<?php echo "plusInfo.php?NumLicence=$data[0]";?>>Plus d'info</a></td>
+				<td><a href=<?php echo "plusInfoJoueur.php?NumLicence=$data[0]";?>>Plus d'info</a></td>
 			</tr>
         </form>
 			<?php }

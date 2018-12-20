@@ -24,6 +24,7 @@
 				<th scope="col">Lieu</th>
 				<th scope="col">Adversaire</th>
 				<th scope="col">Score (Nous - Eux)</th>
+				<th scope="col"> </th><!-- Truc pour plus info-->
                 <th scope="col"> </th><!-- Truc pour supprimer-->
 
 			</tr>
@@ -61,6 +62,7 @@
 					} else
 						echo("$data[4] - $data[5]");
 					?>
+					<td><a href=<?php echo "plusInfoMatch.php?ID=$data[0]";?>><button type="button" class="btn btn-primary">Plus d'info</button></a></td>
                 <td><a href=<?php echo "supprimerMatch.php?ID=$data[0]";?>><button type="button" class="btn btn-primary">Supprimer</button></a></td>
 			</tr>
         </form>

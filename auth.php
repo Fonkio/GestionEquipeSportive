@@ -12,12 +12,11 @@
     </head>
 	<body style="color:black;
                 background-image:url(https://amicalecoteauessert.files.wordpress.com/2017/05/petanque.jpg);
-                background-size: 100%;
                 background-repeat:no-repeat;">
 
 
 
-<div class="" style="margin-left: 30%; margin-right: 30%; width: 40%;">
+<div class="" style="margin-left: 30%; margin-right: 30%; width: 40%;margin-top: 100px; padding-top: 20px;padding-left: 40px;padding-bottom: 40px; background-color: white; border-radius: 10px;">
 		<?php
 				//Variables pour vérifier le login et le mdp. A mettre dans une BDD après
 
@@ -29,7 +28,7 @@
                     if (empty($_POST['login']) && empty($_POST['mdp'])) {//Si les variables formulaires sont vides
 
                         ?>
-                        <form action="" method="post" class="needs-validation" style="margin-top: 100px; padding-top: 20px;padding-left: 40px;padding-bottom: 40px; background-color: white; border-radius: 10px;">
+                        <form action="" method="post" class="needs-validation" style="">
                         <h4>Se connecter</h4></br>
                         <div class="">
                             <div class="col-md-10 mb-3">

@@ -10,10 +10,11 @@
 
         <title>Joueurs</title>
     </head>
-	<body>
+	<body style="color:black; background-image:url(https://amicalecoteauessert.files.wordpress.com/2017/05/petanque.jpg); background-repeat:no-repeat;">
 	<?php
 		require('header.php');
 	?>
+	<div style="border-radius: 20px; margin-top: 100px; margin-left: 40px; margin-right: 40px;margin-bottom: 40px; background-color: rgba(255, 255, 255, .8); padding: 40px;"> 
 </br>
     <h2 style="text-align:center">Joueurs présents</h2></br>
 	<table class="table">
@@ -61,5 +62,6 @@
 
 		</table>
     <a style="background-color: #818181;" class="btn btn-secondary btn-lg btn-block" href="ajouterJoueur.php" role="button">Ajouter joueur</a>	<!-- Création du tableau-->
+    </div>
     </body>
 </html>

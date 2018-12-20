@@ -9,11 +9,15 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<title>Ajouter le score</title>
 </head>
-<body>
+<body style="color:black; background-image:url(https://amicalecoteauessert.files.wordpress.com/2017/05/petanque.jpg); background-repeat:no-repeat;">
+                <?php require('header.php'); ?>
+                <?php require('header.php'); ?>
+<div style="border-radius: 20px; margin-top: 100px; margin-left: 40px; margin-right: 40px;margin-bottom: 40px; background-color: rgba(255, 255, 255, .8); padding: 40px;">
 	<h1>Ajouter le score du match</h1>
 	<?php 
+	require('lib.php');
 	if (isset($_POST['Modif'])) {
-	 	require('lib.php');
+	 	
 			$linkpdo=connecterPDO();
 			$res = $linkpdo->prepare('UPDATE rencontre SET ResultatEquipe = :rn, ResultatAdverse = :re WHERE IdRencontre = :id');
 			$res->execute(array(
@@ -24,7 +28,8 @@
 			header('Location: match.php');
 
 	 } else{?>
-	<form action="" method="POST" class="needs-validation" novalidate><input type="hidden" name="ID" value="<?php echo $_GET['ID']; ?>">
+	<form action="" method="POST" class="needs-validation" novalidate>
+		<input type="hidden" name="ID" value="<?php echo $_GET['ID']; ?>">
 		<div class="form-row">
 			<div class="col-md-2 mb-3">
 				<label for="validationCustom03">Nous</label>
@@ -35,8 +40,11 @@
 				<input type="number" name="RE" class="form-control" id="validationCustom02" required>
 			</div></br>
 		</div>
-		<button class="btn btn-primary" type="submit" name="Modif">Ajouter le score</button>
-			
+		
+
+
+
+		<button class="btn btn-primary" type="submit" name="Modif">Ajouter le score</button>	
 	</form>
 	<script>
 		// Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -59,5 +67,6 @@
 			})();
 		</script>
 	<?php } ?>
+
 </body>
 </html>

@@ -9,11 +9,14 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	</head>
-	<body>
+	<body style="color:black;
+                background-image:url(https://amicalecoteauessert.files.wordpress.com/2017/05/petanque.jpg);
+                background-repeat:no-repeat;">
 	<?php
 		require('header.php');
 		require('lib.php');
 	?>
+	<div style="border-radius: 20px; margin-top: 100px; margin-left: 40px; margin-right: 40px;margin-bottom: 40px; background-color: rgba(255, 255, 255, .8); padding: 40px;">
 </br>
     <h2 style="text-align:center">Liste des matchs</h2></br>
 	<table class="table">
@@ -25,7 +28,7 @@
 				<th scope="col">Adversaire</th>
 				<th scope="col">Score (Nous - Eux)</th>
 				<th scope="col"> </th><!-- Truc pour plus info-->
-                <th scope="col"> </th><!-- Truc pour supprimer-->
+                <th scope="col"> </th><!-- Truc pour modifier score-->
 
 			</tr>
 		</thead>
@@ -73,6 +76,7 @@
 		?>
 
 		</table>
-    <a style="background-color: #818181;" class="btn btn-secondary btn-lg btn-block" href="ajouterMatch.php" role="button">Ajouter match</a>	<!-- Création du tableau-->
+    <a style="background-color: #818181;" class="btn btn-secondary btn-lg btn-block" href="ajouterMatch.php" role="button">Ajouter match</a>
+</div>
 </body>
 </html>

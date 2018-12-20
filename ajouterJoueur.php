@@ -10,13 +10,13 @@
 
         <title>Ajouter un joueur</title>
     </head>
-	<body>
+	<body style="color:black; background-image:url(https://amicalecoteauessert.files.wordpress.com/2017/05/petanque.jpg); background-repeat:no-repeat; ">
 
 		<?php
     		require('header.php');
 			require('lib.php');
 			$tab = array();
-
+			?><div style="border-radius: 20px; margin-top: 100px; margin-left: 40px; margin-right: 40px;margin-bottom: 40px; background-color: rgba(255, 255, 255, .8); padding: 40px;"> <?php
 			if((empty($_POST['NumLicence'])||empty($_POST['Nom'])||empty($_POST['Prenom'])||empty($_POST['Ddn'])||empty($_POST['Taille'])||empty($_POST['Poids'])||empty($_POST['PostePref'])||empty($_POST['Statut']))&&isset($_POST['Ajouter'])){
 				echo("Veuillez renseigner tout les champs du formulaire correctement");
 
@@ -106,6 +106,6 @@
 				if ($resultat) echo "Transfert réussi";
 			}
 
-		?>
+		?> </div>
 	</body>
 </html>

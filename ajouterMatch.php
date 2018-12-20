@@ -10,11 +10,12 @@
 
         <title>Ajouter un match</title>
     </head>
-	<body>
+	<body style="color:black; background-image:url(https://amicalecoteauessert.files.wordpress.com/2017/05/petanque.jpg); background-repeat:no-repeat; ">
 
 		<?php
     		require('header.php');
-			require('lib.php');
+			require('lib.php');?>
+			<div style="border-radius: 20px; margin-top: 100px; margin-left: 40px; margin-right: 40px;margin-bottom: 40px; background-color: rgba(255, 255, 255, .8); padding: 40px;"><?php
 			$tab = array();
 			if(isset($_POST['Ajouter'])){ 
 				if(($_POST['jt'] == -1)||($_POST['jm'] == -1)||($_POST['jp']== -1)||($_POST['r1'] == -1)||($_POST['r2'] == -1) || ($_POST['r3'] == -1)) {?>

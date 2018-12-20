@@ -17,7 +17,7 @@
 
 
 
-<div class="" style="margin-left: 30%; margin-right: 30%">
+<div class="" style="margin-left: 30%; margin-right: 30%; width: 40%;">
 		<?php
 				//Variables pour vérifier le login et le mdp. A mettre dans une BDD après
 

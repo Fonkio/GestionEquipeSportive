@@ -46,7 +46,7 @@
         </thead>
         <?php
         while($data=$reqSelect->fetch()){
-            $reqSelectJ = $linkpdo->prepare("SELECT * FROM JOUEUR WHERE NumLicence = :nl");
+            $reqSelectJ = $linkpdo->prepare("SELECT * FROM joueur WHERE NumLicence = :nl");
             $reqSelectJ->execute(array('nl' => $data['NumLicence']));
             while($dataJ=$reqSelectJ->fetch()){
                 $nomJ = $dataJ['Nom'];
@@ -84,7 +84,7 @@
         </thead>
         <?php
         while($data=$reqSelect->fetch()){
-            $reqSelectJ = $linkpdo->prepare("SELECT * FROM JOUEUR WHERE NumLicence = :nl");
+            $reqSelectJ = $linkpdo->prepare("SELECT * FROM joueur WHERE NumLicence = :nl");
             $reqSelectJ->execute(array('nl' => $data['NumLicence']));
             while($dataJ=$reqSelectJ->fetch()){
                 $nomJ = $dataJ['Nom'];

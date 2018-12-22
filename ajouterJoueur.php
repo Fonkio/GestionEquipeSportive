@@ -82,28 +82,8 @@
 				}
 			}
 			
-			//Upload d'image
-			$image_sizes = array( '1024','576'); //Caler la taille de l'image ici, car là c'est un peut comme 1=1
-			$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
-			$maxsize="100000"; //Récupérer le hidden 
-			$maxwidth="1024";
-			$maxheight="576";
-			
 			if(isset($_FILES['Image'])){
-				if ($_FILES['Image']['error'] > 0)$erreur = "Erreur lors du transfert"; //Si ça a bien été transféré
-				if ($_FILES['Image']['size'] > $maxsize) $erreur = "Le fichier est trop gros"; //Vérif de la taille
-				//1. strrchr renvoie l'extension avec le point (« . »).
-				//2. substr(chaine,1) ignore le premier caractère de chaine.
-				//3. strtolower met l'extension en minuscules.
-				$extension_upload = strtolower(  substr(  strrchr($_FILES['Image']['name'], '.')  ,1)  );
-				if ( in_array($extension_upload,$extensions_valides) ) echo "Extension correcte"; //Faire un truc si ça passe pas
-				
-				$image_sizes = getimagesize($_FILES['Image']['tmp_name']);//Get la taille de l'image
-				if ($image_sizes[0] > $maxwidth OR $image_sizes[1] > $maxheight) $erreur = "Image trop grande";
-				
-				$nom = "photo/{$numLicence}.{$extension_upload}";
-				$resultat = move_uploaded_file($_FILES['Image']['tmp_name'],$nom);
-				if ($resultat) echo "Transfert réussi";
+                uploadImage($numLicence);
 			}
 
 		?> </div>

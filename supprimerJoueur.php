@@ -52,7 +52,8 @@
   	 	else
    		{
    	?>
-   		<a class="btn btn-light" href="joueur.php" role="button">Retour</a>
+    <br />
+   		<a class="btn btn-light" href="joueur.php" style = "display: block; margin-left: 45%; margin-right: 45%;" role="button">Retour</a>
    	<?php
    		}
    	?>

@@ -48,6 +48,10 @@
 			     'Statut' => $data['Statut']);
 	}
 	formulaire("modifierJoueur.php?NumLicence=$id", $tab, "Modifier");
+
+        if(isset($_FILES['Image'])){
+            uploadImage($id);
+        }
     ?>
 </div>
 </body>

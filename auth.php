@@ -18,7 +18,6 @@
 
 <div class="" style="margin-left: 30%; margin-right: 30%; width: 40%;margin-top: 100px; padding-top: 20px;padding-left: 40px;padding-bottom: 40px; background-color: white; border-radius: 10px;">
 		<?php
-				//Variables pour vérifier le login et le mdp. A mettre dans une BDD après
 
 				require('lib.php');//Appel connexion BBD
 				$linkpdo=connecterPDO();

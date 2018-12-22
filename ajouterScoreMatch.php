@@ -11,7 +11,6 @@
 </head>
 <body style="color:black; background-image:url(https://amicalecoteauessert.files.wordpress.com/2017/05/petanque.jpg); background-repeat:no-repeat;">
                 <?php require('header.php'); ?>
-                <?php require('header.php'); ?>
 <div style="border-radius: 20px; margin-top: 100px; margin-left: 40px; margin-right: 40px;margin-bottom: 40px; background-color: rgba(255, 255, 255, .8); padding: 40px;">
 	<h1>Ajouter le score du match</h1>
 	<?php 
@@ -44,7 +43,8 @@
 
 
 
-		<button class="btn btn-primary" type="submit" name="Modif">Ajouter le score</button>	
+		<button class="btn btn-primary" type="submit" name="Modif">Ajouter le score</button>
+        <a class="btn btn-light" href=javascript:history.go(-1) role="button">Retour</a>
 	</form>
 	<script>
 		// Example starter JavaScript for disabling form submissions if there are invalid fields

@@ -101,6 +101,7 @@
         ?>
     </table>
     <a href="ajouterScoreMatch?ID=<?php echo $_GET['ID'] ?>"><button class="btn btn-primary" >Modifier le score</button>    </a>
-  </div>  
+    <a class="btn btn-light" href=javascript:history.go(-1) role="button">Retour</a>
+</div>
 </body>
 </html>

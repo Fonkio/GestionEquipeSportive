@@ -33,11 +33,33 @@
                   'Poids' => $data['Poids'],
                   'PostePref' => $data['PostePref'],
                   'Statut' => $data['Statut']);
-          }
+          }?>
+            <dl class="row">
+                <dt class="col-sm-3">Photo</dt>
+                <dd class="col-sm-9">Oui oui oui</dd>
 
+                <dt class="col-sm-3">Nom</dt>
+                <dd class="col-sm-9"><?php echo $tab["Nom"]; ?></dd>
 
+                <dt class="col-sm-3">Prénom</dt>
+                <dd class="col-sm-9"><?php echo $tab["Prenom"];?></dd>
 
+                <dt class="col-sm-3">Date de naissance</dt>
+                <dd class="col-sm-9"><?php echo $tab["Ddn"];?></dd>
 
-            ?></div>
+                <dt class="col-sm-3 text-truncate">Taille</dt>
+                <dd class="col-sm-9"><?php echo $tab["Taille"];?></dd>
+
+                <dt class="col-sm-3">Poids</dt>
+                <dd class="col-sm-9"><?php echo $tab["Poids"];?></dd>
+
+                <dt class="col-sm-3">Poste pref</dt>
+                <dd class="col-sm-9"><?php switch($tab["PostePref"]) {case 1 : echo "Tireur"; break;case 2 : echo "Milieu";break;case 3: echo "Pointeur"; break; }?></dd>
+
+                <dt class="col-sm-3">Statut</dt>
+                <dd class="col-sm-9"><?php switch($tab["Statut"]) {case 1 : echo "Actif"; break;case 2 : echo "Blessé";break;case 3: echo "Suspendu"; break; case 4: echo "Absent";break;}?></dd>
+            </dl>
+
+          </div>
 </body>
 </html>

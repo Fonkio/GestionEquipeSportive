@@ -12,7 +12,7 @@
 </head>
 <body style="color:black;
                 background-image:url(https://amicalecoteauessert.files.wordpress.com/2017/05/petanque.jpg);
-                background-repeat:no-repeat;">
+                background-repeat:repeat;">
     <?php
         require('lib.php');
         require('header.php');
@@ -53,10 +53,10 @@
                 $prenomJ = $dataJ['Prenom'];
             }?>
             <tr>
-                <td><?php echo $nomJ ?></td>
                 <td><?php echo $prenomJ ?></td>
                 <td><?php if($data['Role'] == 1){ echo("Tireur");}elseif ($data['Role']==2) {echo "Millieu";}else{echo "Pointeur";} ?></td>
-                <td>JSP</td>
+                <td><?php echo $nomJ ?></td>
+            <td>JSP</td>
                 <td><?php echo $data['Commentaire'] ?></td>
             </tr><?php
         }?>
@@ -100,8 +100,10 @@
         }
         ?>
     </table>
-    <a href="ajouterScoreMatch?ID=<?php echo $_GET['ID'] ?>"><button class="btn btn-primary" >Modifier le score</button>    </a>
-    <a class="btn btn-light" href=javascript:history.go(-1) role="button">Retour</a>
+    <div style="margin-left :40%; margin-right : 40%;">
+      <a href="ajouterScoreMatch?ID=<?php echo $_GET['ID'] ?>"><button class="btn btn-primary" >Modifier le score</button>    </a>
+      <a class="btn btn-light" href=javascript:history.go(-1) role="button">Retour</a>
+    </div>
 </div>
 </body>
 </html>

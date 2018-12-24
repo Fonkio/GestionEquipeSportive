@@ -1,7 +1,8 @@
-Truc à faire :
-Crypter le mdp en md5, car ça transit en clair
+Truc ï¿½ faire :
+Crypter le mdp en md5, car ï¿½a transit en clair
 La page des stats
 Le "plusInfoJoueur.php"
-Vérifier les dates (Qu'on puisse pas mettre n'importe quoi à l'intérieur) -> Mettre un type date et le convertir en ce que veut MySQL
-Faire en sorte qu'on puisse ne pas renseigner les remplaçants pour "ajouterMatch.php"
+Vï¿½rifier les dates (Qu'on puisse pas mettre n'importe quoi ï¿½ l'intï¿½rieur) -> Mettre un type date et le convertir en ce que veut MySQL
+Faire en sorte qu'on puisse ne pas renseigner les remplaï¿½ants pour "ajouterMatch.php"
 Faire des commentaires pour expliquer, xptdrlol
+Corriger le problÃ¨me dans plusInfoMatch.php : Le bas est tout blanc, on a pas l'image

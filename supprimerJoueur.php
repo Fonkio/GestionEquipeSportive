@@ -44,8 +44,10 @@
 		if($tmp==false){
 	?>
    <form action="" method="POST">
-      <button type="submit" class="btn btn-success" style = "display: block; margin-left: 45%; margin-right: 55%;" name="Oui">Oui</button>
-      <a class="btn btn-danger" href="joueur.php" style = "display: block; margin-left: 50%; margin-right: 45.5%; margin-top: -3.2%;" name="Non" role="button">Non</a>
+<div style="margin-left:45%; margin-right:40%; margin-top:2%;">
+      <button type="submit" class="btn btn-success" name="Oui">Oui</button>
+      <a class="btn btn-danger" href="joueur.php" name="Non" role="button">Non</a>
+</div>
    </form>
    <?php
    		}

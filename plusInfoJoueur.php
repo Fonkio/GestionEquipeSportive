@@ -18,7 +18,26 @@
         $linkpdo=connecterPDO();
         $id=sécurisationVariable($_GET['NumLicence']);
 
+        //Préparation requête de recherche du joueur
+         $reqRecherche = $linkpdo -> prepare("SELECT * FROM joueur WHERE NumLicence = :id");
+         //Lancement de la requête
+         $reqRecherche -> execute(array('id'=>$id));
+         //On met le résultat dans des variables
+          //Initialisation dans un tableau
+          while($data=$reqRecherche->fetch()){
+              $tab = array('NumLicence' => $data['NumLicence'],
+                  'Nom' => $data['Nom'],
+                  'Prenom' => $data['Prenom'],
+                  'Ddn' => $data['DateDeNaissance'],
+                  'Taille' => $data['Taille'],
+                  'Poids' => $data['Poids'],
+                  'PostePref' => $data['PostePref'],
+                  'Statut' => $data['Statut']);
+          }
 
-    ?></div>
+
+
+
+            ?></div>
 </body>
 </html>

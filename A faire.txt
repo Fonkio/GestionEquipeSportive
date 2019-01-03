@@ -5,4 +5,3 @@ Le "plusInfoJoueur.php"
 V�rifier les dates (Qu'on puisse pas mettre n'importe quoi � l'int�rieur) -> Mettre un type date et le convertir en ce que veut MySQL
 Faire en sorte qu'on puisse ne pas renseigner les rempla�ants pour "ajouterMatch.php"
 Faire des commentaires pour expliquer, xptdrlol
-Corriger le problème dans plusInfoMatch.php : Le bas est tout blanc, on a pas l'image

@@ -50,7 +50,8 @@
 	formulaire("modifierJoueur.php?NumLicence=$id", $tab, "Modifier");
 
         if(isset($_FILES['Image'])){
-            uploadImage($id);
+            $maxsize=$_POST['MAX_FILE_SIZE'];
+            uploadImage($id,$maxsize);
         }
     ?>
 </div>

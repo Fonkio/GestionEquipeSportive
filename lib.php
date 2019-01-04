@@ -87,17 +87,15 @@ function rechercheMdp()
     return $Mdp;
 }
 
-function uploadImage($numLicence)
+function uploadImage($numLicence,$maxsize)
 {
     //Upload d'image
-    $image_sizes = array('1024', '576'); //Caler la taille de l'image ici, car là c'est un peu comme 1=1
     $extensions_valides = array('jpg', 'jpeg', 'gif', 'png');
-    $maxsize = "100000"; //Récupérer le hidden
     $maxwidth = "1024";
     $maxheight = "576";
 
     if ($_FILES['Image']['error'] > 0) $erreur = "Erreur lors du transfert"; //Si ça a bien été transféré
-    if ($_FILES['Image']['size'] > $maxsize) $erreur = "Le fichier est trop gros"; //Vérif de la taille
+    if ($_FILES['Image']['size'] > $maxsize) $erreur = "Le fichier est trop gros"; //Vérif du poids
     //1. strrchr renvoie l'extension avec le point (« . »).
     //2. substr(chaine,1) ignore le premier caractère de chaine.
     //3. strtolower met l'extension en minuscules.
@@ -118,6 +116,13 @@ function uploadImage($numLicence)
 
 function ajouterExtension($numLicence, $extension_upload)
 {
+    $linkpdo = connecterPDO();
+    $reqRecherche = $linkpdo -> prepare("SELECT extPhoto FROM joueur WHERE NumLicence = :numLicence");
+    $reqRecherche -> execute(array('numLicence'=>$numLicence));
+    while($data=$reqRecherche->fetch()){
+
+    }
+
 
 }
 
@@ -265,10 +270,11 @@ function formulaire($nom, $tab, $titre)
             </div>
             <div class="form-row">
                 <label for="validationCustom08">Photo</label>
+                <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
                 <input type="file" class="form-control-file" id="Image"
                        name="Image" <?php if (strrchr($_SERVER['SCRIPT_NAME'], '/') == "/ajouterJoueur.php") {
                     echo "required";
-                } ?>>
+                } ?> />
                 <?php
                 if (strrchr($_SERVER['SCRIPT_NAME'], '/') == "/ajouterJoueur.php") {
                     ?>

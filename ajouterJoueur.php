@@ -83,8 +83,8 @@
 			}
 			
 			if(isset($_FILES['Image'])){
-			    $hidden//=$_POST[''];
-                uploadImage($numLicence);
+			    $maxsize=$_POST['MAX_FILE_SIZE'];
+                uploadImage($numLicence,$maxsize);
 			}
 
 		?> </div>

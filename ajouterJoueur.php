@@ -83,6 +83,7 @@
 			}
 			
 			if(isset($_FILES['Image'])){
+			    $hidden//=$_POST[''];
                 uploadImage($numLicence);
 			}
 

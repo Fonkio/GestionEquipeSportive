@@ -56,12 +56,12 @@
                     elseif ($_POST['login'] != $login_valide) {
                         header('Location: authErrLogin.php');
                     } 
-                    elseif ($_POST['mdp'] != $mdp_valide) {
+                    elseif (!comparerMdp($_POST['mdp'],$mdp_valide)){
                         header('Location: authErrMdp.php');
                     } else {
                         $_SESSION['login'] = $_POST['login'];
-                        $_SESSION['mdp'] = $_POST['mdp'];
-                        creerJeton();
+                        $_SESSION['mdp'] = rechercheMdp();
+                       //creerJeton();
                         header('Location: index.php');
                     }
                 }

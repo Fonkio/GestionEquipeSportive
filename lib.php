@@ -10,6 +10,7 @@ if (!(strrchr($_SERVER['SCRIPT_NAME'], '/') == "/auth.php" || strrchr($_SERVER['
     }
 }
 
+/*
 function creerJeton()
 {
     $token_jeton = md5(time() * rand(1, 10));//Création du jeton
@@ -56,6 +57,7 @@ function verifJeton()
         exit();
     }
 }
+*/
 
 function sécurisationVariable($var)
 {
@@ -85,6 +87,16 @@ function rechercheMdp()
         $Mdp = $data['Mdp'];
     }
     return $Mdp;
+}
+
+function crypterMdp($Mdp)
+{
+    return password_hash($Mdp, PASSWORD_DEFAULT);
+}
+
+function comparerMdp($MdpClair,$MdpCrypt)
+{
+    return password_verify($MdpClair,$MdpCrypt);
 }
 
 function uploadImage($numLicence,$maxsize)

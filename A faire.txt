@@ -1,5 +1,4 @@
 ﻿Truc � faire :
-- Crypter le mdp en md5, car �a transit en clair
 - La page des stats
 - Le "plusInfoJoueur.php"
 - V�rifier les dates (Qu'on puisse pas mettre n'importe quoi � l'int�rieur) -> Mettre un type date et le convertir en ce que veut MySQL

@@ -33,12 +33,13 @@ require('header.php'); ?>
             'Taille' => $data['Taille'],
             'Poids' => $data['Poids'],
             'PostePref' => $data['PostePref'],
-            'Statut' => $data['Statut']);
+            'Statut' => $data['Statut'],
+            'extPhoto' => $data['extPhoto']);
     } ?>
     <dl class="row">
-        <dt class="col-sm-3">Photo</dt>
-        <dd class="col-sm-9">Oui oui oui</dd>
-
+        <dt class="col-sm-3"><img src="photo/<?php echo $id.".".$tab["extPhoto"]?>" width="200" height="150"/></dt>
+        <dd class="col-sm-9"></dd>
+        
         <dt class="col-sm-3">Nom</dt>
         <dd class="col-sm-9"><?php echo $tab["Nom"]; ?></dd>
 

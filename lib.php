@@ -94,12 +94,12 @@ function crypterMdp($Mdp)
     return password_hash($Mdp, PASSWORD_DEFAULT);
 }
 
-function comparerMdp($MdpClair,$MdpCrypt)
+function comparerMdp($MdpClair, $MdpCrypt)
 {
-    return password_verify($MdpClair,$MdpCrypt);
+    return password_verify($MdpClair, $MdpCrypt);
 }
 
-function uploadImage($numLicence,$maxsize)
+function uploadImage($numLicence, $maxsize)
 {
     //Upload d'image
     $extensions_valides = array('jpg', 'jpeg', 'gif', 'png');
@@ -129,13 +129,8 @@ function uploadImage($numLicence,$maxsize)
 function ajouterExtension($numLicence, $extension_upload)
 {
     $linkpdo = connecterPDO();
-    $reqRecherche = $linkpdo -> prepare("SELECT extPhoto FROM joueur WHERE NumLicence = :numLicence");
-    $reqRecherche -> execute(array('numLicence'=>$numLicence));
-    while($data=$reqRecherche->fetch()){
-
-    }
-
-
+    $reqAjout = $linkpdo->prepare("UPDATE joueur set extPhoto = :extension_upload WHERE NumLicence = :numLicence");
+    $reqAjout->execute(array('numLicence' => $numLicence, 'extension_upload' => $extension_upload));
 }
 
 function connecterPDO()
@@ -159,7 +154,8 @@ function formulaire($nom, $tab, $titre)
         <!-- Titre de la page, qu'on modifie en fonction de si on est sur ajouter ou modifier-->
         <form action="<?php echo $nom; ?>" enctype="multipart/form-data" method="POST" class="needs-validation"
               novalidate> <!-- Idem sur quoi on renvoit le post-->
-            <!--<?php //insertJeton();?>-->
+            <!--<?php //insertJeton();
+            ?>-->
             <div class="form-row">
                 <div class="col-md-8 mb-3">
                     <label for="validationCustom01">Numéro de licence</label>
@@ -282,7 +278,7 @@ function formulaire($nom, $tab, $titre)
             </div>
             <div class="form-row">
                 <label for="validationCustom08">Photo</label>
-                <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+                <input type="hidden" name="MAX_FILE_SIZE" value="1048576"/>
                 <input type="file" class="form-control-file" id="Image"
                        name="Image" <?php if (strrchr($_SERVER['SCRIPT_NAME'], '/') == "/ajouterJoueur.php") {
                     echo "required";

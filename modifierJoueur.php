@@ -13,8 +13,8 @@
 </head>
 <body style="color:black; background-image:url(https://amicalecoteauessert.files.wordpress.com/2017/05/petanque.jpg); background-repeat:no-repeat;">
 <?php
-    require('lib.php');
     require('header.php');
+    require('lib.php');
     $linkpdo = connecterPDO();
 ?>
 <div style="border-radius: 20px; margin-top: 100px; margin-left: 40px; margin-right: 40px;margin-bottom: 40px; background-color: rgba(255, 255, 255, .8); padding: 40px;"> <?php

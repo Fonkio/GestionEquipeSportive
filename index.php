@@ -48,9 +48,17 @@
     }
 
     //Calcul des pourcentages :
-    $prctWin = ($nbMatchWin/$nbMatchTotal)*100;
-    $prctNul = ($nbMatchNul/$nbMatchTotal)*100;
-    $prctLose = ($nbMatchLose/$nbMatchTotal)*100;
+    if($nbMatchTotal == 0)
+    {
+        $prctWin = 0;
+        $prctLose = 0;
+        $prctNul = 0;
+    }
+    else {
+        $prctWin = ($nbMatchWin / $nbMatchTotal) * 100;
+        $prctNul = ($nbMatchNul / $nbMatchTotal) * 100;
+        $prctLose = ($nbMatchLose / $nbMatchTotal) * 100;
+    }
 ?>
     <h2>Nombre match : <?php echo $nbMatchTotal;?> </h2>
     <h2>Nombre de victoires : <?php echo $nbMatchWin." (".$prctWin."%)"; ?> </h2>

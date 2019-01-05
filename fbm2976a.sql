@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Ven 04 Janvier 2019 à 22:26
+-- Généré le :  Sam 05 Janvier 2019 à 13:57
 -- Version du serveur :  5.7.21-1
 -- Version de PHP :  5.6.26-1
 
@@ -37,7 +37,7 @@ CREATE TABLE `identifiant` (
 --
 
 INSERT INTO `identifiant` (`id`, `Login`, `Mdp`) VALUES
-(1, 'lapin', 'canard');
+(1, 'lapin', '$2y$10$Jy2WphmhlRJWkZlBh.Va/.9/BNnMxS/rmfNOhdNNVu9e.qeTTDxfm');
 
 -- --------------------------------------------------------
 
@@ -92,16 +92,19 @@ CREATE TABLE `participerremplacant` (
 --
 
 INSERT INTO `participerremplacant` (`NumLicence`, `IdRencontre`, `Notation`, `Role`, `Commentaire`) VALUES
-(516, 3, NULL, '3', NULL),
+(516, 3, '5', '3', NULL),
 (516, 4, NULL, '1', NULL),
 (516, 5, NULL, '1', NULL),
-(516, 6, NULL, '1', NULL),
-(789, 3, NULL, '2', NULL),
+(516, 6, NULL, '1', 'hÃ©hÃ©'),
+(516, 7, NULL, '3', NULL),
+(789, 3, '2', '2', NULL),
 (789, 4, NULL, '2', NULL),
 (789, 5, NULL, '2', NULL),
 (789, 6, NULL, '2', NULL),
+(789, 7, NULL, '2', NULL),
 (5414, 6, NULL, '3', NULL),
-(11521, 3, NULL, '1', NULL),
+(5414, 7, NULL, '1', NULL),
+(11521, 3, '1', '1', NULL),
 (11521, 4, NULL, '3', NULL),
 (11521, 5, NULL, '3', NULL);
 
@@ -124,18 +127,21 @@ CREATE TABLE `participertitulaire` (
 --
 
 INSERT INTO `participertitulaire` (`NumLicence`, `IdRencontre`, `Notation`, `Role`, `Commentaire`) VALUES
-(111, 3, NULL, '1', NULL),
+(111, 3, '5', '1', 'test'),
 (111, 4, NULL, '3', NULL),
 (111, 5, NULL, '1', NULL),
-(111, 6, NULL, '3', NULL),
-(154, 3, NULL, '2', NULL),
+(111, 6, '4', '3', 'Je'),
+(111, 7, NULL, '1', NULL),
+(154, 3, '4', '2', 'michel'),
 (154, 4, NULL, '1', NULL),
 (154, 5, NULL, '2', NULL),
-(154, 6, NULL, '2', NULL),
-(156, 3, NULL, '3', NULL),
+(154, 6, '3', '2', 'Suis'),
+(154, 7, NULL, '2', NULL),
+(156, 3, '2', '3', 'trop fort <3'),
 (156, 4, NULL, '2', NULL),
 (156, 5, NULL, '3', NULL),
-(156, 6, NULL, '1', NULL);
+(156, 6, NULL, '1', 'tro for <3'),
+(156, 7, NULL, '3', NULL);
 
 -- --------------------------------------------------------
 
@@ -160,7 +166,8 @@ INSERT INTO `rencontre` (`IdRencontre`, `DateRencontre`, `LieuRencontre`, `Equip
 (3, '878', 'Exterieur', 'test', 5, 7),
 (4, '878', 'Domicile', 'test', 7, 4),
 (5, '878', 'Exterieur', 'test', 5, 5),
-(6, '878', 'Exterieur', 'test', NULL, NULL);
+(6, '878', 'Exterieur', 'test', 7, 4),
+(7, '564416', 'Exterieur', 'k', NULL, NULL);
 
 --
 -- Index pour les tables exportées
@@ -209,7 +216,7 @@ ALTER TABLE `identifiant`
 -- AUTO_INCREMENT pour la table `rencontre`
 --
 ALTER TABLE `rencontre`
-  MODIFY `IdRencontre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `IdRencontre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

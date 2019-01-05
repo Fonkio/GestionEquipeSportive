@@ -27,12 +27,20 @@
         }?>
 <div style="border-radius: 20px; margin-top: 100px; margin-left: 40px; margin-right: 40px;margin-bottom: 40px; background-color: rgba(255, 255, 255, .8); padding: 40px;">
         <br>
-        <h1><?php echo("Match contre $Equipe le $Date"); ?></h1><br><?php
+        <h3><?php echo("Info du match :"); ?></h3><br><?php
+        echo ("Adversaire : $Equipe </br>");
+        echo ("Date : $Date </br>");
+        echo ("Score : ");
+        if(is_null($data['ResultatEquipe'])||is_null($data['ResultatAdverse'])) {?>
+            <a href="ajouterScoreMatch.php?ID=<?php echo $_GET['ID'] ?>"><button class="btn btn-primary" >Ajouter un score</button></a><?php
+        } else {
+            echo ("(Nous - Eux) <br>".$data['ResultatEquipe']." - ".$data['ResultatAdverse']);
+        }
 
         $reqSelect = $linkpdo->prepare("SELECT * FROM participertitulaire WHERE IdRencontre = :id");
         $reqSelect->execute(array('id' => $id));
         ?>
-        <h3>Titulaires :</h3><br>
+        <h3>Joueurs titulaires :</h3><br>
         <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -86,7 +94,7 @@
          $reqSelect = $linkpdo->prepare("SELECT * FROM participerremplacant WHERE IdRencontre = :id");
         $reqSelect->execute(array('id' => $id));
         ?>
-        <h3>Remplaçants :</h3><br>
+        <h3>Joueurs remplaçants :</h3><br>
         <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -133,7 +141,7 @@
         ?>
     </table>
     <div style="margin-left :40%; margin-right : 40%;">
-      <a href="ajouterScoreMatch.php?ID=<?php echo $_GET['ID'] ?>"><button class="btn btn-primary" >Modifier le score</button>    </a>
+
       <a class="btn btn-light" href=javascript:history.go(-1) role="button">Retour</a>
     </div>
 </div>

@@ -57,7 +57,6 @@
 				<td><?php
 					if(is_null($data[4])&&is_null($data[5])){
 						?>
-						<!-- Button to Open the Modal -->
 						<a href="ajouterScoreMatch.php?ID=<?php echo($data[0]); ?>"><button type="button" class="btn btn-primary">
 							Ajouter un score
 						</button></a>

@@ -56,9 +56,24 @@
                 <td><?php echo $prenomJ ?></td>
                 <td><?php echo $nomJ ?></td>
                 <td><?php if($data['Role'] == 1){ echo("Tireur");}elseif ($data['Role']==2) {echo "Millieu";}else{echo "Pointeur";} ?></td>
-
-            <td>JSP</td>
-                <td><?php echo $data['Commentaire'] ?></td>
+                <td><?php
+                    if(is_null($data['Notation'])){
+                        ?>
+                        <a href="ajouterNote.php?IDm=<?php echo $_GET['ID'];echo '&IDj='; echo $data['NumLicence']; echo '&Table=t' ?>"><button class="btn btn-primary" >Ajouter note</button></a>
+                        <?php
+                    } else
+                        echo($data['Notation']);
+                    ?>
+                </td>
+                <td><?php
+                    if(is_null($data['Commentaire'])){
+                        ?>
+                        <a href="ajouterComm.php?IDm=<?php echo $_GET['ID'];echo '&IDj='; echo $data['NumLicence']; echo '&Table=t'  ?>"><button class="btn btn-primary" >Ajouter commentaire</button></a>
+                        <?php
+                    } else
+                        echo($data['Commentaire']);
+                    ?>
+                    </td>
             </tr><?php
         }?>
         </table>
@@ -95,8 +110,24 @@
                 <td><?php echo $nomJ ?></td>
                 <td><?php echo $prenomJ ?></td>
                 <td><?php if($data['Role'] == 1){ echo("Tireur");}elseif ($data['Role']==2) {echo "Millieu";}else{echo "Pointeur";} ?></td>
-                <td><a href="ajouterNote.php?ID=<?php echo $_GET['ID'];echo '&'; echo $data['NumLicence'] ?>"><button class="btn btn-primary" >Ajouter note</button></a></td>
-                <td><a href="ajouterNote.php?ID=<?php echo $_GET['ID'];echo '&'; echo $data['NumLicence'] ?>"><button class="btn btn-primary" >Ajouter note</button></a></td>
+            <td><?php
+                if(is_null($data['Notation'])){
+                    ?>
+                    <a href="ajouterNote.php?IDm=<?php echo $_GET['ID'];echo '&IDj='; echo $data['NumLicence']; echo '&Table=r' ?>"><button class="btn btn-primary" >Ajouter note</button></a>
+                    <?php
+                } else
+                    echo($data['Notation']);
+                    ?>
+            </td>
+            <td><?php
+                if(is_null($data['Commentaire'])){
+                    ?>
+                    <a href="ajouterComm.php?IDm=<?php echo $_GET['ID'];echo '&IDj='; echo $data['NumLicence']; echo '&Table=r'  ?>"><button class="btn btn-primary" >Ajouter commentaire</button></a>
+                    <?php
+                } else
+                    echo($data['Commentaire']);
+                    ?>
+            </td>
             </tr><?php
         }
         ?>

@@ -81,7 +81,7 @@
 					'Role'=>1);
 
 					$reqAjout->execute($tab_param);
-					echo $reqAjout->debugDumpParams();
+
 
 					//Préparation requête ajout participer
 					$reqAjout = $linkpdo->prepare("INSERT INTO participertitulaire (

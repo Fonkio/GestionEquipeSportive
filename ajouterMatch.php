@@ -21,13 +21,13 @@
 				if(($_POST['jt'] == -1)||($_POST['jm'] == -1)||($_POST['jp']== -1)||($_POST['r1'] == -1)||($_POST['r2'] == -1) || ($_POST['r3'] == -1)) {?>
 					<br><h5 style="color: red">Veuillez renseigner tout les joueurs afin de constituer une équipe complète</h5>
 					<?php
-					formulaireMatch();
+					formulaireMatch("ajouterMatch.php",$_POST, "Ajouter");
 				}
 				elseif(($_POST['jt'] == $_POST['jm'])||($_POST['jt'] == $_POST['jp'])||($_POST['jt'] == $_POST['r1'])||($_POST['jt'] == $_POST['r2'])||($_POST['jt'] == $_POST['r3'])||($_POST['jm'] == $_POST['jp'])||($_POST['jm'] == $_POST['r1'])||($_POST['jm'] == $_POST['r2'])||($_POST['jm'] == $_POST['r3'])||($_POST['jp'] == $_POST['r1'])||($_POST['jp'] == $_POST['r2'])||($_POST['jp'] == $_POST['r3'])||($_POST['r1'] == $_POST['r2'])||($_POST['r1'] == $_POST['r3'])||($_POST['r2'] == $_POST['r3'])) {?>
 					<br><h5 style="color: red">Vous avez selectionné plusieurs fois le même joueur</h5>
 					
 					<?php
-					formulaireMatch();
+					formulaireMatch("ajouterMatch.php",$_POST, "Ajouter");
 				}
 				else{				
 					$DateR=sécurisationVariable($_POST['DateR']);
@@ -170,7 +170,7 @@
 	                <a class="btn btn-light" href="match.php">Retour</a>
 	                <?php
 				}
-			} else {formulaireMatch();}
+			} else {formulaireMatch("ajouterMatch.php",$_POST, "Ajouter");}
 		?>
 	</body>
 </html>

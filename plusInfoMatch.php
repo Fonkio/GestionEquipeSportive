@@ -24,6 +24,9 @@
             $Date=$data['DateRencontre'];
             $Lieu=$data['LieuRencontre'];
             $Equipe=$data['EquipeAdverse'];
+            $rn=$data['ResultatEquipe'];
+            $re=$data['ResultatAdverse'];
+
         }?>
 <div style="border-radius: 20px; margin-top: 100px; margin-left: 40px; margin-right: 40px;margin-bottom: 40px; background-color: rgba(255, 255, 255, .8); padding: 40px;">
         <br>
@@ -31,10 +34,11 @@
         echo ("Adversaire : $Equipe </br>");
         echo ("Date : $Date </br>");
         echo ("Score : ");
-        if(is_null($data['ResultatEquipe'])||is_null($data['ResultatAdverse'])) {?>
+
+        if(is_null($rn)&&is_null($re)){?>
             <a href="ajouterScoreMatch.php?ID=<?php echo $_GET['ID'] ?>"><button class="btn btn-primary" >Ajouter un score</button></a><?php
         } else {
-            echo ("(Nous - Eux) <br>".$data['ResultatEquipe']." - ".$data['ResultatAdverse']);
+            echo ("(Nous - Eux) <br>".$rn." - ".$re);
         }
 
         $reqSelect = $linkpdo->prepare("SELECT * FROM participertitulaire WHERE IdRencontre = :id");

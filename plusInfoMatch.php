@@ -41,7 +41,7 @@
             echo ("(Nous - Eux) <br>".$rn." - ".$re);
         }
 
-        $reqSelect = $linkpdo->prepare("SELECT * FROM participertitulaire WHERE IdRencontre = :id");
+        $reqSelect = $linkpdo->prepare("SELECT * FROM participertitulaire WHERE IdRencontre = :id ORDER BY Role");
         $reqSelect->execute(array('id' => $id));
         ?>
         <h3>Joueurs titulaires :</h3><br>
@@ -65,8 +65,8 @@
                 $prenomJ = $dataJ['Prenom'];
             }?>
             <tr>
-                <td><?php echo $prenomJ ?></td>
                 <td><?php echo $nomJ ?></td>
+                <td><?php echo $prenomJ ?></td>
                 <td><?php if($data['Role'] == 1){ echo("Tireur");}elseif ($data['Role']==2) {echo "Millieu";}else{echo "Pointeur";} ?></td>
                 <td><?php
                     if(is_null($data['Notation'])){
@@ -95,7 +95,7 @@
 
         <?php 
 
-         $reqSelect = $linkpdo->prepare("SELECT * FROM participerremplacant WHERE IdRencontre = :id");
+         $reqSelect = $linkpdo->prepare("SELECT * FROM participerremplacant WHERE IdRencontre = :id ORDER BY Role");
         $reqSelect->execute(array('id' => $id));
         ?>
         <h3>Joueurs remplaçants :</h3><br>
@@ -112,7 +112,7 @@
         </thead>
         <?php
         while($data=$reqSelect->fetch()){
-            $reqSelectJ = $linkpdo->prepare("SELECT * FROM joueur WHERE NumLicence = :nl");
+            $reqSelectJ = $linkpdo->prepare("SELECT * FROM joueur WHERE NumLicence = :nl ");
             $reqSelectJ->execute(array('nl' => $data['NumLicence']));
             while($dataJ=$reqSelectJ->fetch()){
                 $nomJ = $dataJ['Nom'];

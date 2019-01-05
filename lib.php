@@ -527,7 +527,7 @@ function formulaireMatch($nom, $tab, $titre)
                     </select>
                 </div>
             </div>
-            <button class="btn btn-primary" type="submit" name="Ajouter">Ajouter</button>
+            <button class="btn btn-primary" type="submit" name="Ajouter"><?php echo $titre ?></button>
             <a class="btn btn-light" href=javascript:history.go(-1) role="button">Retour</a>
         </form>
     </div>

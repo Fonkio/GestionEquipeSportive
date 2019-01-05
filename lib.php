@@ -1,9 +1,12 @@
 <?php
 session_start();
 
+//Variables servant à la vérification du login/mdp
 $login_valide = rechercheLogin();
 $mdp_valide = rechercheMdp();
 
+//Vérification automatique pour voir si on est log. Est présent à chaque appel de lib.php
+//Si on n'est pas sur une page d'authentification, ou sur une page d'erreur d'authentification, on est redirigé vers la page d'auth
 if (!(strrchr($_SERVER['SCRIPT_NAME'], '/') == "/auth.php" || strrchr($_SERVER['SCRIPT_NAME'], '/') == "/authErrLogin.php" || strrchr($_SERVER['SCRIPT_NAME'], '/') == "/authErrMdp.php")) {
     if (empty($_SESSION['login'])) {
         header('Location: auth.php');
@@ -11,6 +14,8 @@ if (!(strrchr($_SERVER['SCRIPT_NAME'], '/') == "/auth.php" || strrchr($_SERVER['
 }
 
 /*
+ /!\ J'ai voulu me lancer dans la création de token pour plus de sécurité, mais le temps me manquait /!\
+
 function creerJeton()
 {
     $token_jeton = md5(time() * rand(1, 10));//Création du jeton
@@ -59,6 +64,7 @@ function verifJeton()
 }
 */
 
+//Pour sécuriser une variable, contre les injections SQL notamment
 function sécurisationVariable($var)
 {
     $var = stripslashes($var); //Supprime les antislashs d'une chaîne et aussi les balises (exemple <strong>)
@@ -67,6 +73,7 @@ function sécurisationVariable($var)
     return $var;
 }
 
+//Retourne le login du site
 function rechercheLogin()
 {
     $linkpdo = connecterPDO();
@@ -78,6 +85,7 @@ function rechercheLogin()
     return $Login;
 }
 
+//Retourne le mdp hashé du site.
 function rechercheMdp()
 {
     $linkpdo = connecterPDO();
@@ -89,30 +97,36 @@ function rechercheMdp()
     return $Mdp;
 }
 
+//Renvoie la chaine cryptée
 function crypterMdp($Mdp)
 {
     return password_hash($Mdp, PASSWORD_DEFAULT);
 }
 
+//Compare un String en clair et un String hashé pour voir si c'est les même.
+//Retourne un booléen : True si ce sont les même, false sinon.
 function comparerMdp($MdpClair, $MdpCrypt)
 {
     return password_verify($MdpClair, $MdpCrypt);
 }
 
+//Fonction qui sert à l'upload de l'image
 function uploadImage($numLicence, $maxsize)
 {
     //Upload d'image
     $extensions_valides = array('jpg', 'jpeg', 'gif', 'png');
-    $maxwidth = "1024";
-    $maxheight = "576";
+    $maxwidth = "576"; //Largeur max
+    $maxheight = "1024";//Hauteur max
 
     if ($_FILES['Image']['error'] > 0) $erreur = "Erreur lors du transfert"; //Si ça a bien été transféré
     if ($_FILES['Image']['size'] > $maxsize) $erreur = "Le fichier est trop gros"; //Vérif du poids
+
     //1. strrchr renvoie l'extension avec le point (« . »).
     //2. substr(chaine,1) ignore le premier caractère de chaine.
     //3. strtolower met l'extension en minuscules.
     $extension_upload = strtolower(substr(strrchr($_FILES['Image']['name'], '.'), 1));
-    if (!(in_array($extension_upload, $extensions_valides))) {
+
+    if (!(in_array($extension_upload, $extensions_valides))) { //Si l'extension n'est pas dans ce qu'on accepte
         exit("Erreur sur l'extension");
     } else {
         ajouterExtension($numLicence, $extension_upload);
@@ -121,11 +135,12 @@ function uploadImage($numLicence, $maxsize)
     $image_sizes = getimagesize($_FILES['Image']['tmp_name']);//Get la taille de l'image
     if ($image_sizes[0] > $maxwidth OR $image_sizes[1] > $maxheight) $erreur = "Image trop grande";
 
-    $nom = "photo/{$numLicence}.{$extension_upload}";
-    $resultat = move_uploaded_file($_FILES['Image']['tmp_name'], $nom);
+    $nom = "photo/{$numLicence}.{$extension_upload}";//Le dossier de destination avec le nom de la photo : Le NumLicence sur joueur + "." + son extension
+    $resultat = move_uploaded_file($_FILES['Image']['tmp_name'], $nom);//On move l'image
     if (!($resultat)) echo "Le transfert n'a pas pu aboutir";
 }
 
+//Ajoute l'extension de la photo dans la table joueur pour le joueur correspondant
 function ajouterExtension($numLicence, $extension_upload)
 {
     $linkpdo = connecterPDO();
@@ -133,9 +148,10 @@ function ajouterExtension($numLicence, $extension_upload)
     $reqAjout->execute(array('numLicence' => $numLicence, 'extension_upload' => $extension_upload));
 }
 
+//Pour se connecter à la BDD
 function connecterPDO()
 {
-    require('../config.php');
+    require('../config.php');//On l'a mis à l'extérieur pour ne pas avoir de problèmes lors du partage avec le git (Vu qu'on a pas les mêmes logs)
     try {
         $linkpdo = new PDO("mysql:host=$host;dbname=$dbname", $login, $mdp);
     } catch (Exception $e) {
@@ -144,6 +160,7 @@ function connecterPDO()
     return $linkpdo;
 }
 
+//Le formulaire bootstrap que l'on utilise pour ajouter un joueur et modifier un joueur
 function formulaire($nom, $tab, $titre)
 {
     //BLOC Formulaire
@@ -276,15 +293,17 @@ function formulaire($nom, $tab, $titre)
                     </select>
                 </div>
             </div>
+
+            <!-- Formulaire pour l'image. Le champ caché est pour la taille max de l'image qu'on récupère lors de l'upload image -->
             <div class="form-row">
                 <label for="validationCustom08">Photo</label>
                 <input type="hidden" name="MAX_FILE_SIZE" value="1048576"/>
                 <input type="file" class="form-control-file" id="Image"
                        name="Image" <?php if (strrchr($_SERVER['SCRIPT_NAME'], '/') == "/ajouterJoueur.php") {
-                    echo "required";
+                    echo "required"; //Si on est sur ajouterJoueur.php, on est obligé de rentrer une photo. Donc on echo le required pour le HTML
                 } ?> />
                 <?php
-                if (strrchr($_SERVER['SCRIPT_NAME'], '/') == "/ajouterJoueur.php") {
+                if (strrchr($_SERVER['SCRIPT_NAME'], '/') == "/ajouterJoueur.php") { //Idem, si on est sur ajouterJoueur.php on affiche le message d'erreur
                     ?>
                     <div class="invalid-feedback">
                         Veuillez mettre une photo.
@@ -294,6 +313,7 @@ function formulaire($nom, $tab, $titre)
                 ?>
             </div>
             <br/>
+            <!-- Les boutons du formulaire -->
             <button class="btn btn-primary" type="submit" name="Ajouter"><?php echo $titre; ?></button>
             <a class="btn btn-light" href=javascript:history.go(-1) role="button">Retour</a>
         </form>
@@ -301,7 +321,7 @@ function formulaire($nom, $tab, $titre)
 
     </div>
     <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        //Script JS pour la vérification que tous les champs ont bien été remplis
         (function () {
             'use strict';
             window.addEventListener('load', function () {
@@ -323,6 +343,10 @@ function formulaire($nom, $tab, $titre)
     <?php //verifJeton();
 } // Fin fonction
 
+//Formulaire pour les matchs
+//Titre = Titre de la page : Ajouter ou Modifier en l'occurence
+//$tab : Tableau avec toutes les informations concernant un joueur
+//Nom : Vers quelle page le formulaire va envoyer ses données
 function formulaireMatch($nom, $tab, $titre)
 {
     //BLOC Formulaire
@@ -532,7 +556,7 @@ function formulaireMatch($nom, $tab, $titre)
         </form>
     </div>
     <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        //Script JS pour la vérification que tous les champs ont bien été remplis
         (function () {
             'use strict';
             window.addEventListener('load', function () {

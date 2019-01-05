@@ -24,7 +24,7 @@ require('lib.php'); ?>
         $Login = rechercheLogin();
         $tmp = sécurisationVariable($_POST['Login']);
 
-        if ($tmp == $Login) {
+        if ($tmp == $Login) {//Si c'est le même login
             $string = "C'est le même login";
         } else {
             $reqModif = $linkpdo->prepare("UPDATE identifiant SET Login=:tmp WHERE id=:id");
@@ -32,7 +32,7 @@ require('lib.php'); ?>
             $string = "Login changé";
         }
     } else {
-        $string = "";
+        $string = ""//Le String est vide s'il n'y a rien, car il n'y a rien à afficher
     }
 
     //On gère le mdp
@@ -41,7 +41,7 @@ require('lib.php'); ?>
         $tmp = sécurisationVariable($_POST['Mdp']);
         $Mdp = rechercheMdp();
 
-        if (comparerMdp($tmp,$Mdp)) {
+        if (comparerMdp($tmp,$Mdp)) {//Si c'est le même mdp
             $string = "C'est le même mot de passe";
         } else {
             $tmp=crypterMdp($tmp);
@@ -67,7 +67,7 @@ require('lib.php'); ?>
     </form>
 
     <?php
-    echo $string;
+    echo $string;//On affiche le String
     ?>
 </div>
 </body>

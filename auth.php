@@ -27,6 +27,7 @@
                     if (empty($_POST['login']) && empty($_POST['mdp'])) {//Si les variables formulaires sont vides
 
                         ?>
+                        <!-- Le formulaire -->
                         <form action="" method="post" class="needs-validation" style="">
                         <h4>Se connecter</h4></br>
                         <div class="">
@@ -53,12 +54,12 @@
                         <?php
                     //Si le login est faux
                     }
-                    elseif ($_POST['login'] != $login_valide) {
+                    elseif ($_POST['login'] != $login_valide) {//Si le login est faux on redirige
                         header('Location: authErrLogin.php');
                     } 
-                    elseif (!comparerMdp($_POST['mdp'],$mdp_valide)){
+                    elseif (!comparerMdp($_POST['mdp'],$mdp_valide)){//Si le mot de passe est faux on redirige
                         header('Location: authErrMdp.php');
-                    } else {
+                    } else {//Si tout est bon on enregistre
                         $_SESSION['login'] = $_POST['login'];
                         $_SESSION['mdp'] = rechercheMdp();
                        //creerJeton();

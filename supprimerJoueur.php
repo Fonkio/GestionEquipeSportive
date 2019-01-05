@@ -23,27 +23,28 @@ require('lib.php'); ?>
 
     $id = sécurisationVariable($_GET['NumLicence']);
 
+    //Requête de recherche du joueur en fonction de son numéro de licence
     $reqRecherche = $linkpdo->query("SELECT Nom,Prenom FROM joueur WHERE NumLicence = $id");
     while ($data = $reqRecherche->fetch()) {
         $Nom = $data['Nom'];
         $Prenom = $data['Prenom'];
     }
 
-    if (isset($_POST['Oui'])) {
+    if (isset($_POST['Oui'])) { //Si oui, alors on supprime
         $reqSuppr = $linkpdo->prepare("DELETE FROM joueur WHERE NumLicence=:id");
         $reqSuppr->execute(array('id' => $id));
         $h2 = "Le joueur $Nom $Prenom a bien été supprimé.";
         $tmp = true;
     }
 
-    if ($tmp == false) {
+    if ($tmp == false) {//Message de confirmation
         $h2 = "Voulez-vous vraiment supprimer le joueur : $Nom $Prenom";
     }
     ?>
 
     <h2 style="text-align:center;"><?php echo "$h2"; ?> </h2>
     <?php
-    if ($tmp == false) {
+    if ($tmp == false) {//Si aucun bouton n'a été validé, on affiche les deux boutons oui et non
         ?>
         <form action="" method="POST">
             <div style="margin-left:45%; margin-right:40%; margin-top:2%;">

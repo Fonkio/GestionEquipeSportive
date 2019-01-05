@@ -48,7 +48,7 @@
     }
 
     //Calcul des pourcentages :
-    if($nbMatchTotal == 0)
+    if($nbMatchTotal == 0)//On fait attention à la division par 0
     {
         $prctWin = 0;
         $prctLose = 0;
@@ -71,13 +71,12 @@
     //Requête pour avoir tous les numéros de licence
     $reqNumLicence = $linkpdo->prepare("SELECT NumLicence FROM joueur");
     $reqNumLicence -> execute();
-    //Tableau
+    //Tableau bootstrap
     ?>
 
         <table class="table">
             <thead class="thead-dark">
             <tr>
-                <!--<td>Photo</td>-->
                 <th scope="col">Numéro de licence</th>
                 <th scope="col">Statut actuel</th>
                 <th scope="col">Poste préféré</th>
@@ -85,12 +84,10 @@
                 <th scope="col">Nombre total de sélection en tant que remplaçant</th>
                 <th scope="col">Moyenne des évaluations</th>
                 <th scope="col">Matchs gagnés</th>
-
-
             </tr>
             </thead>
             <?php
-            while ($data = $reqNumLicence -> fetch()) {
+            while ($data = $reqNumLicence -> fetch()) {//Boucle pour chaque joueur
                 $numLicence = $data['NumLicence'];
 
                 //Requête pour avoir le statut actuel et le poste préféré
@@ -150,7 +147,7 @@
                     $moyenne2 = $data['avg(Notation)'];
                 }
 
-                if($moyenne1 == 0 && $moyenne2 == 0)
+                if($moyenne1 == 0 && $moyenne2 == 0)//On fait attention à la division par
                 {
                     $moyenne = 0;
                 }

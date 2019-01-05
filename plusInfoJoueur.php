@@ -36,6 +36,7 @@ require('header.php'); ?>
             'Statut' => $data['Statut'],
             'extPhoto' => $data['extPhoto']);
     } ?>
+    <!-- Affichage bootstrap pour les informations joueur-->
     <dl class="row">
         <dt class="col-sm-3"><img src="photo/<?php echo $id.".".$tab["extPhoto"]?>" width="200" height="150"/></dt>
         <dd class="col-sm-9"></dd>

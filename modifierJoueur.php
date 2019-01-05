@@ -22,7 +22,7 @@
     $id = sécurisationVariable($_GET['NumLicence']);
 
     //Requête de modification
-    if (isset($_POST['Ajouter'])) {
+    if (isset($_POST['Ajouter'])) {//Si on clique sur ajouter
         $reqModif = $linkpdo->prepare("UPDATE joueur SET Nom=:Nom, Prenom =:Prenom, DateDeNaissance=:Ddn, Taille=:Taille, Poids=:Poids, PostePref=:PostePref, Statut=:Statut WHERE NumLicence=:NumLicence");
         $reqModif->execute(array('Nom' => sécurisationVariable($_POST['Nom']),
             'Prenom' => sécurisationVariable($_POST['Prenom']),
@@ -50,8 +50,10 @@
             'PostePref' => $data['PostePref'],
             'Statut' => $data['Statut']);
     }
+    //Apparition du formulaire de modification avec toutes les informations sur le joueur
     formulaire("modifierJoueur.php?NumLicence=$id", $tab, "Modifier");
 
+    //Upload de l'image
     if (isset($_FILES['Image'])) {
         $maxsize = $_POST['MAX_FILE_SIZE'];
         uploadImage($id, $maxsize);

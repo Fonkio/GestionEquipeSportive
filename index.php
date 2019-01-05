@@ -55,9 +55,9 @@
         $prctNul = 0;
     }
     else {
-        $prctWin = ($nbMatchWin / $nbMatchTotal) * 100;
-        $prctNul = ($nbMatchNul / $nbMatchTotal) * 100;
-        $prctLose = ($nbMatchLose / $nbMatchTotal) * 100;
+        $prctWin = substr(($nbMatchWin / $nbMatchTotal) * 100,0,5);
+        $prctNul =  substr(($nbMatchNul / $nbMatchTotal) * 100,0,5);
+        $prctLose =  substr(($nbMatchLose / $nbMatchTotal) * 100,0,5);
     }
 //Je ferme la balise pour afficher les stats
  ?>
@@ -194,7 +194,7 @@
                     $prctWin = 0;
                 }
                 else {
-                    $prctWin = ($nbMatchWinTotal / $nbMatchTotal) * 100;
+                    $prctWin = substr(($nbMatchWinTotal / $nbMatchTotal) * 100,0,5);
                 }
                 ?>
                 <tr>

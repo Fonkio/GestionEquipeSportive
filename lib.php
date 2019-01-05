@@ -34,14 +34,14 @@ function verifJeton()
 {
 
     //verif si le jeton est dans le formulaire
-    if (!(isset($_SESSION['jtn_token']) && isset($_SESSION['jtn_token_time']) && isset($_POST['input_token']))) {
+    if (!(isset($_SESSION['jtn_token']) && isset($_SESSION['jtn_token_time']) && isset($tab['input_token']))) {
         echo "Erreur de jeton, veuillez vous reconnecter.";
         sleep(5);
         header('Location : deconnexion.php');
         exit();
     }
     //Si le même jeton entre la session et le formulaire
-    if (!($_SESSION['jtn_token'] == $_POST['input_token'])) {
+    if (!($_SESSION['jtn_token'] == $tab['input_token'])) {
         echo "Le jeton n'est pas le même. Attention aux tentatives de hacking. Veuillez vous reconnecter.";
         sleep(5);
         header('Location : deconnexion.php');
@@ -323,20 +323,20 @@ function formulaire($nom, $tab, $titre)
     <?php //verifJeton();
 } // Fin fonction
 
-function formulaireMatch()
+function formulaireMatch($nom, $tab, $titre)
 {
     //BLOC Formulaire
     ?>
     <div class="container-fluid">
         <br/>
-        <h2>Ajouter un match :</h2><br/>
-        <form action="ajouterMatch.php" method="POST" class="needs-validation" novalidate>
+        <h2><?php echo $titre; ?> un match :</h2><br/>
+        <form action="<?php echo $nom; ?>" method="POST" class="needs-validation" novalidate>
             <div class="form-row">
                 <div class="col-md-8 mb-3">
                     <label for="validationCustom01">Date</label>
                     <input type="text" name="DateR" class="form-control" id="validationCustom01"
-                           placeholder="JJ/MM/AAAA" value="<?php if (isset($_POST['DateR'])) {
-                        echo $_POST['DateR'];
+                           placeholder="JJ/MM/AAAA" value="<?php if (isset($tab['DateR'])) {
+                        echo $tab['DateR'];
                     } ?>" required>
                     <div class="invalid-feedback">
                         Veuillez rentrer la date du match.
@@ -347,14 +347,14 @@ function formulaireMatch()
                 <div class="col-md-4 mb-3">
                     <label for="validationCustom07">Lieu</label>
                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name='Lieu'>
-                        <option value="Domicile" <?php if (isset($_POST['Lieu'])) {
-                            if ($_POST['Lieu'] == 'Domicile') {
+                        <option value="Domicile" <?php if (isset($tab['Lieu'])) {
+                            if ($tab['Lieu'] == 'Domicile') {
                                 echo "selected";
                             }
                         } ?>>Domicile
                         </option>
-                        <option value="Exterieur" <?php if (isset($_POST['Lieu'])) {
-                            if ($_POST['Lieu'] == 'Exterieur') {
+                        <option value="Exterieur" <?php if (isset($tab['Lieu'])) {
+                            if ($tab['Lieu'] == 'Exterieur') {
                                 echo "selected";
                             }
                         } ?>>Extérieur
@@ -364,8 +364,8 @@ function formulaireMatch()
                 <div class="col-md-4 mb-3">
                     <label for="validationCustom03">Adveraire</label>
                     <input type="text" name="Adversaire" class="form-control" id="validationCustom03"
-                           placeholder="Nom équipe adverse" value="<?php if (isset($_POST['Adversaire'])) {
-                        echo $_POST['Adversaire'];
+                           placeholder="Nom équipe adverse" value="<?php if (isset($tab['Adversaire'])) {
+                        echo $tab['Adversaire'];
                     } ?>" required>
                     <div class="invalid-feedback">
                         Veuillez rentrer le nom de l'équipe adverse.
@@ -377,8 +377,8 @@ function formulaireMatch()
                 <div class="col-md-3 mb-3">
                     <label for="validationCustom07">Tireur</label>
                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name='jt'>
-                        <option value="-1" <?php if (isset($_POST['jt'])) {
-                            if ($_POST['jt'] == -1) {
+                        <option value="-1" <?php if (isset($tab['jt'])) {
+                            if ($tab['jt'] == -1) {
                                 echo "selected";
                             }
                         } else {
@@ -390,8 +390,8 @@ function formulaireMatch()
                         $res = $linkpdo->prepare('SELECT NumLicence, Nom, Prenom, Taille, Poids, PostePref FROM joueur WHERE Statut = 1');
                         $res->execute(array());
                         while (($data = $res->fetch())) { ?>
-                            <option value="<?php echo $data[0]; ?>" <?php if (isset($_POST['jt'])) {
-                                if ($_POST['jt'] == $data[0]) {
+                            <option value="<?php echo $data[0]; ?>" <?php if (isset($tab['jt'])) {
+                                if ($tab['jt'] == $data[0]) {
                                     echo "selected";
                                 }
                             } ?>><?php echo("$data[1] $data[2]"); ?></option>
@@ -402,8 +402,8 @@ function formulaireMatch()
                 <div class="col-md-3 mb-3">
                     <label for="validationCustom07">Millieu</label>
                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name='jm'>
-                        <option value="-1" <?php if (isset($_POST['jm'])) {
-                            if ($_POST['jm'] == -1) {
+                        <option value="-1" <?php if (isset($tab['jm'])) {
+                            if ($tab['jm'] == -1) {
                                 echo "selected";
                             }
                         } else {
@@ -415,8 +415,8 @@ function formulaireMatch()
                         $res = $linkpdo->prepare('SELECT NumLicence, Nom, Prenom, Taille, Poids, PostePref FROM joueur WHERE Statut = 1');
                         $res->execute(array());
                         while (($data = $res->fetch())) { ?>
-                            <option value="<?php echo $data[0]; ?>" <?php if (isset($_POST['jm'])) {
-                                if ($_POST['jm'] == $data[0]) {
+                            <option value="<?php echo $data[0]; ?>" <?php if (isset($tab['jm'])) {
+                                if ($tab['jm'] == $data[0]) {
                                     echo "selected";
                                 }
                             } ?>><?php echo("$data[1] $data[2]"); ?></option>
@@ -427,8 +427,8 @@ function formulaireMatch()
                 <div class="col-md-3 mb-3">
                     <label for="validationCustom07">Pointeur</label>
                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name='jp'>
-                        <option value="-1" <?php if (isset($_POST['jp'])) {
-                            if ($_POST['jp'] == -1) {
+                        <option value="-1" <?php if (isset($tab['jp'])) {
+                            if ($tab['jp'] == -1) {
                                 echo "selected";
                             }
                         } else {
@@ -440,8 +440,8 @@ function formulaireMatch()
                         $res = $linkpdo->prepare('SELECT NumLicence, Nom, Prenom, Taille, Poids, PostePref FROM joueur WHERE Statut = 1');
                         $res->execute(array());
                         while (($data = $res->fetch())) { ?>
-                            <option value="<?php echo $data[0]; ?>" <?php if (isset($_POST['jp'])) {
-                                if ($_POST['jp'] == $data[0]) {
+                            <option value="<?php echo $data[0]; ?>" <?php if (isset($tab['jp'])) {
+                                if ($tab['jp'] == $data[0]) {
                                     echo "selected";
                                 }
                             } ?>><?php echo("$data[1] $data[2]"); ?></option>
@@ -454,8 +454,8 @@ function formulaireMatch()
                 <div class="col-md-3 mb-3">
                     <label for="validationCustom07">Remplaçant 1</label>
                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name='r1'>
-                        <option value="-1" <?php if (isset($_POST['r1'])) {
-                            if ($_POST['r1'] == -1) {
+                        <option value="-1" <?php if (isset($tab['r1'])) {
+                            if ($tab['r1'] == -1) {
                                 echo "selected";
                             }
                         } else {
@@ -467,8 +467,8 @@ function formulaireMatch()
                         $res = $linkpdo->prepare('SELECT NumLicence, Nom, Prenom, Taille, Poids, PostePref FROM joueur WHERE Statut = 1');
                         $res->execute(array());
                         while (($data = $res->fetch())) { ?>
-                            <option value="<?php echo $data[0]; ?>" <?php if (isset($_POST['r1'])) {
-                                if ($_POST['r1'] == $data[0]) {
+                            <option value="<?php echo $data[0]; ?>" <?php if (isset($tab['r1'])) {
+                                if ($tab['r1'] == $data[0]) {
                                     echo "selected";
                                 }
                             } ?>><?php echo("$data[1] $data[2]"); ?></option>
@@ -479,8 +479,8 @@ function formulaireMatch()
                 <div class="col-md-3 mb-3">
                     <label for="validationCustom07">Remplaçant 2</label>
                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name='r2'>
-                        <option value="-1" <?php if (isset($_POST['r2'])) {
-                            if ($_POST['r2'] == -1) {
+                        <option value="-1" <?php if (isset($tab['r2'])) {
+                            if ($tab['r2'] == -1) {
                                 echo "selected";
                             }
                         } else {
@@ -492,8 +492,8 @@ function formulaireMatch()
                         $res = $linkpdo->prepare('SELECT NumLicence, Nom, Prenom, Taille, Poids, PostePref FROM joueur WHERE Statut = 1');
                         $res->execute(array());
                         while (($data = $res->fetch())) { ?>
-                            <option value="<?php echo $data[0]; ?>" <?php if (isset($_POST['r2'])) {
-                                if ($_POST['r2'] == $data[0]) {
+                            <option value="<?php echo $data[0]; ?>" <?php if (isset($tab['r2'])) {
+                                if ($tab['r2'] == $data[0]) {
                                     echo "selected";
                                 }
                             } ?>><?php echo("$data[1] $data[2]"); ?></option>
@@ -504,8 +504,8 @@ function formulaireMatch()
                 <div class="col-md-3 mb-3">
                     <label for="validationCustom07">Remplaçant 3</label>
                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name='r3'>
-                        <option value="-1" <?php if (isset($_POST['r3'])) {
-                            if ($_POST['r3'] == -1) {
+                        <option value="-1" <?php if (isset($tab['r3'])) {
+                            if ($tab['r3'] == -1) {
                                 echo "selected";
                             }
                         } else {
@@ -517,8 +517,8 @@ function formulaireMatch()
                         $res = $linkpdo->prepare('SELECT NumLicence, Nom, Prenom, Taille, Poids, PostePref FROM joueur WHERE Statut = 1');
                         $res->execute(array());
                         while (($data = $res->fetch())) { ?>
-                            <option value="<?php echo $data[0]; ?>" <?php if (isset($_POST['r3'])) {
-                                if ($_POST['r3'] == $data[0]) {
+                            <option value="<?php echo $data[0]; ?>" <?php if (isset($tab['r3'])) {
+                                if ($tab['r3'] == $data[0]) {
                                     echo "selected";
                                 }
                             } ?>><?php echo("$data[1] $data[2]"); ?></option>

@@ -130,7 +130,6 @@
 
                     //Ajout des données dans un tableau
                     $tab = array(
-                        'NumLicence' => $data['NumLicence'],
                         'DateR' => $data['DateRencontre'],
                         'Lieu' => $data['LieuRencontre'],
                         'Adversaire' => $data['EquipeAdverse'],

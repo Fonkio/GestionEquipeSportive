@@ -23,7 +23,7 @@
 		<thead class="thead-dark">
 			<tr>
 				<!--<td>Photo</td>-->
-				<th scope="col">Date</th>
+				<th scope="col">Date et Heure</th>
 				<th scope="col">Lieu</th>
 				<th scope="col">Adversaire</th>
 				<th scope="col">Score (Nous - Eux)</th>
@@ -52,22 +52,22 @@
 										}
 									}
 								}?>">
-				<td><?php echo"$data[1]"?></td>
-				<td><?php echo"$data[2]"?></td>
-				<td><?php echo"$data[3]"?></td>
+				<td><?php echo $data['DateRencontre']." à ".$data['Heure']?></td>
+				<td><?php echo $data['LieuRencontre'] ?></td>
+				<td><?php echo $data['EquipeAdverse'] ?></td>
 				<td><?php
 					if(is_null($data[4])&&is_null($data[5])){
 						?>
-						<a href="ajouterScoreMatch.php?ID=<?php echo($data[0]); ?>"><button type="button" class="btn btn-primary">
+						<a href="ajouterScoreMatch.php?ID=<?php echo($data['IdRencontre']); ?>"><button type="button" class="btn btn-primary">
 							Ajouter un score
 						</button></a>
 						<?php
 					} else
 						echo("$data[4] - $data[5]");
 					?>
-					<td><a href=<?php echo "plusInfoMatch.php?ID=$data[0]";?>><button type="button" class="btn btn-primary">Plus d'info</button></a></td>
-                <td><a href=<?php echo "modifierMatch.php?ID=$data[0]";?>><button type="button" class="btn btn-primary">Modifier</button></a></td>
-                <td><a href=<?php echo "supprimerMatch.php?ID=$data[0]";?>><button type="button" class="btn btn-primary">Supprimer</button></a></td>
+					<td><a href=<?php echo "plusInfoMatch.php?ID=".$data['IdRencontre'];?>><button type="button" class="btn btn-primary">Plus d'info</button></a></td>
+                <td><a href=<?php echo "modifierMatch.php?ID=".$data['IdRencontre'];?>><button type="button" class="btn btn-primary">Modifier</button></a></td>
+                <td><a href=<?php echo "supprimerMatch.php?ID=".$data['IdRencontre'];?>><button type="button" class="btn btn-primary">Supprimer</button></a></td>
 			</tr>
         </form>
 			<?php }

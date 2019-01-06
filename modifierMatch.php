@@ -40,9 +40,10 @@
                 else { // Tout les joueurs son sel et pas de doubles
 
                     //MAJ info du match
-                    $reqModif = $linkpdo->prepare("UPDATE rencontre SET DateRencontre=:d, LieuRencontre =:l, EquipeAdverse=:ea WHERE IdRencontre=:id");
+                    $reqModif = $linkpdo->prepare("UPDATE rencontre SET DateRencontre=:d, LieuRencontre =:l, EquipeAdverse=:ea, Heure=:h WHERE IdRencontre=:id");
                     $reqModif->execute(array('d' => sécurisationVariable($_POST['DateR']),
                         'l' => sécurisationVariable($_POST['Lieu']),
+                        'h' => sécurisationVariable($_POST['Heure']),
                         'ea' => sécurisationVariable($_POST['Adversaire']),
                         'id' => sécurisationVariable($_GET['ID'])));
 
@@ -133,6 +134,7 @@
                         'DateR' => $data['DateRencontre'],
                         'Lieu' => $data['LieuRencontre'],
                         'Adversaire' => $data['EquipeAdverse'],
+                        'Heure' => $data['Heure'],
                         'jt' => $jt,
                         'jm' => $jm,
                         'jp' => $jp,

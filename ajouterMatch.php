@@ -33,6 +33,7 @@
 					$DateR=sécurisationVariable($_POST['DateR']);
 					$Lieu=sécurisationVariable($_POST['Lieu']);
 					$Adversaire=sécurisationVariable($_POST['Adversaire']);
+					$Heure=sécurisationVariable($_POST['Heure']);
 					$jt=sécurisationVariable($_POST['jt']);
 					$jm=sécurisationVariable($_POST['jm']);
 					$jp=sécurisationVariable($_POST['jp']);
@@ -46,15 +47,18 @@
 					$reqAjout = $linkpdo->prepare("INSERT INTO rencontre (
 												DateRencontre,
 												LieuRencontre,
-												EquipeAdverse) 
+												EquipeAdverse,
+												Heure) 
 												VALUES (:DateR,
 												:Lieu,
-												:Adversaire)");
+												:Adversaire,
+												:Heure)");
 					//Exécution requête ajout match
 					$tab_param = array(
 					'DateR'=>$DateR,
 					'Lieu'=>$Lieu,
-					'Adversaire'=>$Adversaire);
+					'Adversaire'=>$Adversaire,
+                    'Heure'=>$Heure);
 					$reqAjout->execute($tab_param);
 
 					//Execution requête recup id match

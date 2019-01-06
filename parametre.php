@@ -32,7 +32,7 @@ require('lib.php'); ?>
             $string = "Login changé";
         }
     } else {
-        $string = ""//Le String est vide s'il n'y a rien, car il n'y a rien à afficher
+        $string = "";//Le String est vide s'il n'y a rien, car il n'y a rien à afficher
     }
 
     //On gère le mdp

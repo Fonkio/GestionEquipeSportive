@@ -210,7 +210,7 @@ function formulaire($nom, $tab, $titre)
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label for="validationCustom04">Date de naissance</label>
-                    <input type="text" name="Ddn" class="form-control" id="validationCustom04" placeholder="JJ/MM/AAAA"
+                    <input type="date" name="Ddn" class="form-control" id="validationCustom04" placeholder="JJ/MM/AAAA"
                            value="<?php if (isset($tab['Ddn'])) {
                                echo($tab['Ddn']);
                            } ?>" required>
@@ -356,14 +356,22 @@ function formulaireMatch($nom, $tab, $titre)
         <h2><?php echo $titre; ?> un match :</h2><br/>
         <form action="<?php echo $nom; ?>" method="POST" class="needs-validation" novalidate>
             <div class="form-row">
-                <div class="col-md-8 mb-3">
+                <div class="col-md-4 mb-3">
                     <label for="validationCustom01">Date</label>
-                    <input type="text" name="DateR" class="form-control" id="validationCustom01"
-                           placeholder="JJ/MM/AAAA" value="<?php if (isset($tab['DateR'])) {
+                    <input type="date" name="DateR" class="form-control" id="validationCustom01" value="<?php if (isset($tab['DateR'])) {
                         echo $tab['DateR'];
                     } ?>" required>
                     <div class="invalid-feedback">
                         Veuillez rentrer la date du match.
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="validationCustom01">Heure</label>
+                    <input type="time" name="Heure" class="form-control" id="validationCustom01" value="<?php if (isset($tab['Heure'])) {
+                        echo $tab['Heure'];
+                    } ?>" required>
+                    <div class="invalid-feedback">
+                        Veuillez rentrer l'heure du match.
                     </div>
                 </div>
             </div>

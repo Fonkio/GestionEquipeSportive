@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Sam 05 Janvier 2019 à 13:57
+-- Généré le :  Dim 06 Janvier 2019 à 18:05
 -- Version du serveur :  5.7.21-1
 -- Version de PHP :  5.6.26-1
 
@@ -71,6 +71,7 @@ INSERT INTO `joueur` (`NumLicence`, `Nom`, `Prenom`, `DateDeNaissance`, `Taille`
 (5414, 'lhzfd', 'ssg', '784', 65, 54, '1', '1', ''),
 (11521, 'efnkn', 'mdjsc', '2018-01-01', 111, 111, '1', '1', ''),
 (65465, 'dff', 'rf', '2018-01-01', 13, 24, '3', '3', ''),
+(66626, 'Test', 'test', '10/12/2010', 12, 12, '1', '1', 'jpg'),
 (541444, 'lhzfd', 'ssg', '784', 65, 54, '1', '1', '');
 
 -- --------------------------------------------------------
@@ -87,27 +88,6 @@ CREATE TABLE `participerremplacant` (
   `Commentaire` longtext
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Contenu de la table `participerremplacant`
---
-
-INSERT INTO `participerremplacant` (`NumLicence`, `IdRencontre`, `Notation`, `Role`, `Commentaire`) VALUES
-(516, 3, '5', '3', NULL),
-(516, 4, NULL, '1', NULL),
-(516, 5, NULL, '1', NULL),
-(516, 6, NULL, '1', 'hÃ©hÃ©'),
-(516, 7, NULL, '3', NULL),
-(789, 3, '2', '2', NULL),
-(789, 4, NULL, '2', NULL),
-(789, 5, NULL, '2', NULL),
-(789, 6, NULL, '2', NULL),
-(789, 7, NULL, '2', NULL),
-(5414, 6, NULL, '3', NULL),
-(5414, 7, NULL, '1', NULL),
-(11521, 3, '1', '1', NULL),
-(11521, 4, NULL, '3', NULL),
-(11521, 5, NULL, '3', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -122,27 +102,6 @@ CREATE TABLE `participertitulaire` (
   `Commentaire` longtext
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Contenu de la table `participertitulaire`
---
-
-INSERT INTO `participertitulaire` (`NumLicence`, `IdRencontre`, `Notation`, `Role`, `Commentaire`) VALUES
-(111, 3, '5', '1', 'test'),
-(111, 4, NULL, '3', NULL),
-(111, 5, NULL, '1', NULL),
-(111, 6, '4', '3', 'Je'),
-(111, 7, NULL, '1', NULL),
-(154, 3, '4', '2', 'michel'),
-(154, 4, NULL, '1', NULL),
-(154, 5, NULL, '2', NULL),
-(154, 6, '3', '2', 'Suis'),
-(154, 7, NULL, '2', NULL),
-(156, 3, '2', '3', 'trop fort <3'),
-(156, 4, NULL, '2', NULL),
-(156, 5, NULL, '3', NULL),
-(156, 6, NULL, '1', 'tro for <3'),
-(156, 7, NULL, '3', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -155,19 +114,9 @@ CREATE TABLE `rencontre` (
   `LieuRencontre` enum('Domicile','Exterieur') CHARACTER SET utf8 NOT NULL,
   `EquipeAdverse` varchar(50) CHARACTER SET utf8 NOT NULL,
   `ResultatEquipe` smallint(6) DEFAULT NULL,
-  `ResultatAdverse` smallint(6) DEFAULT NULL
+  `ResultatAdverse` smallint(6) DEFAULT NULL,
+  `Heure` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Contenu de la table `rencontre`
---
-
-INSERT INTO `rencontre` (`IdRencontre`, `DateRencontre`, `LieuRencontre`, `EquipeAdverse`, `ResultatEquipe`, `ResultatAdverse`) VALUES
-(3, '878', 'Exterieur', 'test', 5, 7),
-(4, '878', 'Domicile', 'test', 7, 4),
-(5, '878', 'Exterieur', 'test', 5, 5),
-(6, '878', 'Exterieur', 'test', 7, 4),
-(7, '564416', 'Exterieur', 'k', NULL, NULL);
 
 --
 -- Index pour les tables exportées
@@ -216,7 +165,7 @@ ALTER TABLE `identifiant`
 -- AUTO_INCREMENT pour la table `rencontre`
 --
 ALTER TABLE `rencontre`
-  MODIFY `IdRencontre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `IdRencontre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

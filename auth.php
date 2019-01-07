@@ -46,23 +46,24 @@
 
 				//Si les variables sessions sont vides
 				if(empty($_SESSION['login']) || empty($_SESSION['mdp'])) {
-
-                    if (empty($_POST['login']) && empty($_POST['mdp'])) {//Si les variables formulaires sont vides
-                        auth();
+                    if (isset($_POST['op'])) {
+                        if (empty($_POST['login']) && empty($_POST['mdp'])) {//Si les variables formulaires sont vides
+                            auth();
+                        } elseif ($_POST['login'] != $login_valide) {//Si le login est faux on redirige
+                            auth();
+                            ?> <h5 style="color: red">Identifiant incorrect</h5> <?php
+                        } elseif (!comparerMdp($_POST['mdp'], $mdp_valide)) {//Si le mot de passe est faux on redirige
+                            auth();
+                            ?> <h5 style="color: red">Mot de passe incorrect</h5> <?php
+                        } else {//Si tout est bon on enregistre
+                            $_SESSION['login'] = $_POST['login'];
+                            $_SESSION['mdp'] = rechercheMdp();
+                            //creerJeton();
+                            header('Location: index.php');
+                        }
                     }
-                    elseif ($_POST['login'] != $login_valide) {//Si le login est faux on redirige
+                    else {
                         auth();
-                        ?> <h5 style="color: red">Identifiant incorrect</h5> <?php
-                    } 
-                    elseif (!comparerMdp($_POST['mdp'],$mdp_valide)){//Si le mot de passe est faux on redirige
-                        auth();
-                        ?> <h5 style="color: red">Mot de passe incorrect</h5> <?php
-                    }
-                    else {//Si tout est bon on enregistre
-                        $_SESSION['login'] = $_POST['login'];
-                        $_SESSION['mdp'] = rechercheMdp();
-                       //creerJeton();
-                        header('Location: index.php');
                     }
                 }
 		    ?>

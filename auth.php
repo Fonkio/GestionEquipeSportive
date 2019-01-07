@@ -16,13 +16,10 @@
 				require('lib.php');//Appel connexion BBD
 				$linkpdo=connecterPDO();
 
-				//Si les variables sessions sont vides
-				if(empty($_SESSION['login']) || empty($_SESSION['mdp'])) {
-
-                    if (empty($_POST['login']) && empty($_POST['mdp'])) {//Si les variables formulaires sont vides ?>
-
-                        <!-- Le formulaire -->
-                        <form action="" method="post" class="needs-validation">
+				function auth() {
+				    ?>
+                    <!-- Le formulaire -->
+                    <form action="" method="post" class="needs-validation">
                         <h4>Se connecter</h4></br>
                         <div class="form-row" style="margin: auto; text-align: center">
                             <div class="col-md-10 mb-3" style="text-align: center; margin: auto">
@@ -42,17 +39,24 @@
                                 </div>
                             </div>
                         </div>
-                            <button class="btn btn-primary" type="submit" name="op">Se connecter</button>
-                        </form>
+                        <button class="btn btn-primary" type="submit" name="op">Se connecter</button>
+                    </form>
+                    <?php
+                }
 
-                        <?php
-                    //Si le login est faux
+				//Si les variables sessions sont vides
+				if(empty($_SESSION['login']) || empty($_SESSION['mdp'])) {
+
+                    if (empty($_POST['login']) && empty($_POST['mdp'])) {//Si les variables formulaires sont vides
+                        auth();
                     }
                     elseif ($_POST['login'] != $login_valide) {//Si le login est faux on redirige
-                        header('Location: authErrLogin.php');
+                        auth();
+                        ?> <h5 style="color: red">Identifiant incorrect</h5> <?php
                     } 
                     elseif (!comparerMdp($_POST['mdp'],$mdp_valide)){//Si le mot de passe est faux on redirige
-                        header('Location: authErrMdp.php');
+                        auth();
+                        ?> <h5 style="color: red">Mot de passe incorrect</h5> <?php
                     }
                     else {//Si tout est bon on enregistre
                         $_SESSION['login'] = $_POST['login'];

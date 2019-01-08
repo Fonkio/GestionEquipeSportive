@@ -24,14 +24,21 @@
             //verif validation formulaire
             if (isset($_POST['Ajouter'])) { // OUI
 
-                if (($_POST['jt'] == -1) || ($_POST['jm'] == -1) || ($_POST['jp'] == -1) || ($_POST['r1'] == -1) || ($_POST['r2'] == -1) || ($_POST['r3'] == -1)) { //Verif selection de tout les joueurs
+                if (($_POST['jt'] == -1)||($_POST['jm'] == -1)||($_POST['jp']== -1)) { //Verif selection de tout les joueurs
                     ?>
                         <br><h5 style="color: red">Veuillez renseigner tout les joueurs afin de constituer une équipe complète</h5>
                     <?php
                     formulaireMatch("ajouterMatch.php", $_POST, "Ajouter"); //Affichage formulaire
 
                 } //Verif sélection 2 fois le même joueur
-                elseif (($_POST['jt'] == $_POST['jm']) || ($_POST['jt'] == $_POST['jp']) || ($_POST['jt'] == $_POST['r1']) || ($_POST['jt'] == $_POST['r2']) || ($_POST['jt'] == $_POST['r3']) || ($_POST['jm'] == $_POST['jp']) || ($_POST['jm'] == $_POST['r1']) || ($_POST['jm'] == $_POST['r2']) || ($_POST['jm'] == $_POST['r3']) || ($_POST['jp'] == $_POST['r1']) || ($_POST['jp'] == $_POST['r2']) || ($_POST['jp'] == $_POST['r3']) || ($_POST['r1'] == $_POST['r2']) || ($_POST['r1'] == $_POST['r3']) || ($_POST['r2'] == $_POST['r3'])) {
+                elseif (( $_POST['jt'] == $_POST['jm'])||($_POST['jt'] == $_POST['jp'])||
+                    ($_POST['jt'] == $_POST['r1'])||($_POST['jt'] == $_POST['r2'])||
+                    ($_POST['jt'] == $_POST['r3'])||($_POST['jm'] == $_POST['jp'])||
+                    ($_POST['jm'] == $_POST['r1'])||($_POST['jm'] == $_POST['r2'])||
+                    ($_POST['jm'] == $_POST['r3'])||($_POST['jp'] == $_POST['r1'])||
+                    ($_POST['jp'] == $_POST['r2'])||($_POST['jp'] == $_POST['r3'])||
+                    (($_POST['r1'] == $_POST['r2'])&&(!$_POST['r1'] == -1))||(($_POST['r1'] == $_POST['r3'])&&(!$_POST['r1'] == -1))||
+                    (($_POST['r2'] == $_POST['r3'])&&(!$_POST['r2'] == -1))) {
                     ?>
                         <br><h5 style="color: red">Vous avez selectionné plusieurs fois le même joueur</h5>
                     <?php

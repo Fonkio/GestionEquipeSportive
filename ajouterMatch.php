@@ -32,8 +32,8 @@
                     ($_POST['jm'] == $_POST['r1'])||($_POST['jm'] == $_POST['r2'])||
                     ($_POST['jm'] == $_POST['r3'])||($_POST['jp'] == $_POST['r1'])||
                     ($_POST['jp'] == $_POST['r2'])||($_POST['jp'] == $_POST['r3'])||
-                    ($_POST['r1'] == $_POST['r2'])||($_POST['r1'] == $_POST['r3'])||
-                    ($_POST['r2'] == $_POST['r3'])) { //Si un joueur est sélectionné plusieurs fois
+                    (($_POST['r1'] == $_POST['r2'])&&(!$_POST['r1'] == -1))||(($_POST['r1'] == $_POST['r3'])&&(!$_POST['r1'] == -1))||
+                (($_POST['r2'] == $_POST['r3'])&&(!$_POST['r2'] == -1))) { //Si un joueur est sélectionné plusieurs fois
                 ?>
 
                 <br><h5 style="color: red">Vous avez sélectionné plusieurs fois le même joueur</h5>
@@ -134,7 +134,7 @@
                 $reqAjout->execute($tab_param);
 
                 //Préparation requête ajout participer
-                if(!$r1 == -1) {
+                if(!($r1 == -1)) {
                     $reqAjout = $linkpdo->prepare("INSERT INTO participerremplacant (
                                                 IdRencontre,
                                                 NumLicence,
@@ -152,7 +152,7 @@
                 }
 
                 //Préparation requête ajout participer
-                if(!$r2 == -1) {
+                if(!($r2 == -1)) {
                     $reqAjout = $linkpdo->prepare("INSERT INTO participerremplacant (
                                                 IdRencontre,
                                                 NumLicence,
@@ -170,7 +170,7 @@
                 }
 
                 //Préparation requête ajout participer
-                if(!$r3 == -1) {
+                if(!($r3 == -1)) {
                     $reqAjout = $linkpdo->prepare("INSERT INTO participerremplacant (
                                                 IdRencontre,
                                                 NumLicence,

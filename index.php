@@ -151,9 +151,16 @@
                         {
                             $moyenne = 0;
                         }
-                        else {
-                            $moyenne = ($moyenne1 + $moyenne2) / 2;
+                        elseif($moyenne1 == 0 ) {
+				$moyenne = $moyenne2;
                         }
+                        elseif($moyenne2 == 0) {
+                             $moyenne=$moyenne1;
+                        }
+                        else{
+				$moyenne = ($moyenne1 + $moyenne2) / 2;
+                        }
+                     
 
                         //Requête pour le nombre total de matchs joués
                         //En tant que titulaire
